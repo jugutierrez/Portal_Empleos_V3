@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well">
+                <h1>Portal de empleos</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="well">
+            @using (Html.BeginForm("filtrar_basico", "Ofertas_Control", FormMethod.Post))
+            {
+
+        
+                <div class="input-group">
+                    <input type="text" id="palabra_clave" name="palabra_clave" class="form-control " placeholder="Palabra clave, Puesto o Estudio" value="@ViewBag.palabra_clave">
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="submit"> Realizar Busqueda <i class="fa fa-fw fa-search"></i></button>
+                    </span>
+
+                </div>
+
+
+            }
+
+        </div>
+
+    </div>
+</div>

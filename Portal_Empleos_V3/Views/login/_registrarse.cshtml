@@ -1,0 +1,269 @@
+﻿
+@{
+    ViewBag.Title = "registro de usuarios";
+}
+
+
+
+
+
+
+<md-dialog ng-controller="HomeCtrl" >
+   
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h1 flex class="text-center">Creacion de Usuario portal empleo</h1>
+
+            </div>
+        </md-toolbar>
+   
+    <md-dialog-content layout="column" md-dynamic-height layout-margin>
+    
+            <blockquote>
+                <p>Al crear un Usuario Recuerde:</p>
+                <footer>El Ingreso de sus datos nos ayudara a agilizar el proceso</footer>
+                <footer>
+                    Su cuenta es persona e instransferible ,favor mantenga cuidado de sus contraseñas
+                </footer>
+                <footer>En Caso de algun problema Contactar al siguiente correo: jgutierreza@maipu.cl</footer>
+            </blockquote>
+            
+ 
+
+
+        <form name="mainForm" data-ng-submit="crear_cuenta_persona()" data-ng-controller="data1" data-ng-model="datos_cuenta_persona">
+
+            <div layout="row">
+                <div flex layout-padding>
+
+                    <label class="control-label" for="exampleInputEmail1">Nombre:</label>
+                    <input class="form-control input-lg" id="nombre_persona" name="nombre_persona" ng-model="datos_cuenta_persona.nombre_persona" placeholder="EJ:Juan"
+                           type="text" required>
+
+
+                </div>
+                <div flex layout-padding>
+
+                    <label class="control-label" for="exampleInputPassword1">Apellido Paterno:</label>
+                    <input class="form-control input-lg" id="apellido_paterno_persona" name="apellido_paterno_persona" ng-model="datos_cuenta_persona.apellido_paterno_persona"
+                           placeholder="EJ: Gutierrez" type="text" required>
+
+
+
+                </div>
+                <div flex layout-padding>
+
+                    <label class="control-label" for="exampleInputPassword1">Apellido Materno:</label>
+                    <input class="form-control input-lg" id="apellido_materno_persona" name="apellido_materno_persona" ng-model="datos_cuenta_persona.apellido_materno_persona"
+                           placeholder="EJ: Ascencio" type="text" required>
+
+
+                </div>
+
+
+            </div>
+            <div layout="row">
+                <div flex layout-padding>
+                    <label class="control-label" for="exampleInputPassword1"> Identificacion:</label>
+                    <input class="form-control input-lg" id="identificacion_persona" name="identificacion_persona" onkeypress="return soloNumeros(event)" maxlength="9"
+                           placeholder="EJ: 18356397-1" type="text" ng-model="datos_cuenta_persona.identificacion_persona" required>
+                </div>
+
+
+                <div flex layout-padding>
+                    <label class="control-label" for="exampleInputPassword1"> Digito verificador:</label>
+                    <input class="form-control input-lg" id="identificacion_persona_a" name="identificacion_persona_a" maxlength="1"
+                           placeholder="EJ: 1" type="text" ng-model="datos_cuenta_persona.digito_verificador_identificacion_persona" required>
+                </div>
+
+
+
+                <div flex layout-padding ng-init="identificacion_persona()">
+
+
+                    <label class="control-label" for="exampleInputPassword1">Tipo de Identificacion</label>
+
+                    <select name="singleSelect" id="singleSelect" class="form-control input-lg" ng-model="datos_cuenta_persona.id_tipo_identificacion_persona" required>
+                        <option value="">---Seleccione---</option>
+
+                        <option ng-repeat="t_c in tipo_identificacion" value="{{t_c.id_tipo_identificacion_persona}}">{{t_c.nombre_tipo_identificacion_persona}}</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div layout="row" ng-controller="PopupCtrl">
+
+                <div flex layout-padding>
+
+
+                    <label class="control-label" for="exampleInputPassword1">Region</label>
+
+                    <select name="selectPais" id="selectPais" ng-model="datos_cuenta_persona.id_region" ng-options="region.id_region as region.nombre_region for region in regiones" class="form-control input-lg" ng-change="updateDropDownDepartamentos(datos_cuenta_persona.id_region)" required>
+                        <option value="">Seleccione Region</option>
+                    </select>
+
+
+
+                </div>
+                <div flex layout-padding>
+                    <label class="control-label" for="exampleInputPassword1">Ciudad</label>
+
+                    <select name="selectDepartamento" id="selectDepartamento" ng-model="datos_cuenta_persona.id_ciudad" ng-options="ciudad.id_ciudad as ciudad.nombre_ciudad for ciudad in ciudades " class="form-control input-lg" ng-change="updateDropDownProvincias(datos_cuenta_persona.id_ciudad)" required>
+                        <option value="">Seleccione Ciudad</option>
+                    </select>
+
+
+                </div>
+                <div flex layout-padding>
+                    <label class="control-label" for="exampleInputPassword1">Comuna</label>
+
+                    <select name="update_id_comuna" id="update_id_comuna" ng-model="datos_cuenta_persona.id_comuna" ng-options="comuna.id_comuna as comuna.nombre_comuna for comuna in comunas" class="form-control input-lg" required>
+                        <option value="">Seleccione Comuna</option>
+                    </select>
+
+
+
+                </div>
+            </div>
+            <div layout="row" >
+
+                <div flex layout-padding>
+                    <label class="control-label" for="exampleInputPassword1">Direccion:</label>
+                    <input class="form-control input-lg" id="direccion_curriculum" name="direccion_curriculum"
+                           placeholder="EJ: Bahia mansa 0798" type="text" ng-model="datos_cuenta_persona.direccion_curriculum" required>
+                </div>
+                </div>
+           
+            <div layout="row">
+
+                <div flex layout-padding>
+                    <label class="control-label" for="exampleInputPassword1"> Fecha de Nacimiento:</label>
+
+                    <input type="date" class="form-control input-lg" id="exampleInput" name="input" ng-model="datos_cuenta_persona.fecha_nacimiento_persona"
+                           placeholder="yyyy-MM-dd" min="1950-01-01" max="{{currentdate}}" required />
+                </div>
+
+
+
+                <div flex layout-padding ng-init="rellenar_genero()">
+
+             
+
+
+                        <label class="control-label" for="exampleInputPassword1">Genero:</label>
+
+                        <select name="singleSelect" id="singleSelect" class="form-control input-lg" ng-model="datos_cuenta_persona.id_tipo_persona" required>
+                            <option value="">---Seleccione---</option>
+
+                            <option ng-repeat="r_gen in rellenar_ge" value="{{r_gen.id_tipo_persona}}">{{r_gen.nombre_tipo_persona}}</option>
+
+                        </select>
+
+                    </div>
+              
+            </div>
+          
+            <div layout="row">
+                <div flex layout-padding>
+                        <label class="control-label" for="exampleInputPassword1">Sueldo esperado:</label>
+                        <div class="input-group form-inline">
+                            <div class="input-group-addon">$</div>
+                            <input class="form-control input-lg" id="sueldo_esperado" name="sueldo_esperado" ng-model="datos_cuenta_persona.sueldo_esperado"
+                                   placeholder="EJ: 800000" type="text" value="" onkeypress="return soloNumeros(event)" required>
+
+                        </div>
+                    </div>
+
+                </div>
+            
+         
+            <div layout="row">
+                <div flex layout-padding>
+                    <label class="control-label" for="exampleInputPassword1">Correo Electronico:</label>
+                    <input class="form-control input-lg" id="correo_electronico_persona" name="correo_electronico_persona" ng-model="datos_cuenta_persona.correo_electronico_persona"
+                           placeholder="EJ: maipu@maipu.cl" type="email" value="" required>
+                </div>
+
+
+                </div>
+
+            <div layout="row">
+                <div flex layout-padding>
+                    <label class="control-label" for="exampleInputPassword1"> Telefono de Contacto:</label>
+                    <input class="form-control input-lg" id="telefono_curriculum_1" name="telefono_curriculum_1" ng-model="datos_cuenta_persona.telefono_curriculum_1"
+                           placeholder="EJ: 025555555" type="text" value="" onkeypress="return soloNumeros(event)" required>
+                </div>
+
+                <div flex layout-padding>
+                    <label class="control-label" for="exampleInputPassword1">Telefono de Contacto(Celular):</label>
+                    <input class="form-control input-lg" id="telefono_curriculum_2" name="telefono_curriculum_2" ng-model="datos_cuenta_persona.telefono_curriculum_2"
+                           placeholder="EJ: 56977777777" type="text" value="" onkeypress="return soloNumeros(event)" required>
+                </div>
+
+          
+            </div>
+            <hr />
+            <div layout="row">
+                <div flex layout-padding>
+                    <label class="control-label" for="exampleInputPassword1"> Ingrese su clave:</label>
+                    <input class="form-control input-lg" id="telefono_curriculum_1" name="telefono_curriculum_1" ng-model="datos_cuenta_persona.clave_persona_1"
+                           placeholder="Su clave" type="password" value="" required>
+                </div>
+               
+            </div>
+            <div layout="row">
+                <div flex layout-padding>
+                    <label class="control-label" for="exampleInputPassword1">RE-ingrese su clave:</label>
+                    <input class="form-control input-lg" id="telefono_curriculum_2" name="telefono_curriculum_2" ng-model="datos_cuenta_persona.clave_persona_2"
+                           placeholder="re-ingrese su clave" type="password" value="" required>
+                </div>
+
+                </div>
+            
+
+
+
+            <div flex layout-padding>
+                <button type="submit" class="btn btn-block btn-info btn-lg next-step">
+                    Continuar
+                    <span class="badge">
+                        <i class="fa fa-lg fa-arrow-circle-right"></i>
+                    </span>
+                </button>
+
+            </div>
+
+        </form>
+
+
+
+          @*
+    <div class="well" ng-show="activo">
+        <h1 class="text-center">Solicitud de Usuario</h1>
+        <div class="alert alert-dismissable alert-info">
+            <h1 class="text-center text-primary">¡Te has registrado Exitosamente!</h1>
+        </div>
+
+        <div class="well">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1 class="text-center">Recuerda:</h1>
+                    <blockquote>
+                        <p>Datos Importantes Sobre tu Cuenta</p>
+                        <footer>Es personal e instranferible.</footer>
+                        <footer>Cualquier accion realizada con ella es tu responsabilidad.</footer>
+                        <footer>En Caso de algun problema Contactate con un administrador o envia una solicitud de soporte.</footer>
+                    </blockquote>
+                </div>
+            </div>
+            <a class="btn btn-block btn-info btn-lg">Volver al Login    <i class="fa fa-angellist fa-fw fa-lg fa-spin text-primary"></i></a>
+        </div>
+    </div>*@
+
+</md-dialog-content>  
+
+    
+</md-dialog>

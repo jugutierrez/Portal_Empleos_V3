@@ -1,0 +1,92 @@
+﻿<div class="col-md-12">
+    <div ng-if="@ViewBag.id_postulado > 0">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="well">
+                <blockquote class="lead">
+                    <p>Ya Postulaste a esta oferta</p>
+                </blockquote>
+
+
+            </div>
+        </div>
+
+    </div>
+    <div ng-if="@ViewBag.id_postulado == 0"  ng-controller="data1">
+        <div ng-init="vista_cuestionario_oferta(@ViewBag.id_oferta)">
+            <form ng-submit="addEmployee()">
+
+               
+                <div class="well">
+                    <div class="row">
+                     
+                        <div class="col-md-10 col-md-offset-1 text-center">
+
+                          @*<a href="" ng-click="vista_cuestionario_oferta(@ViewBag.id_oferta)">listar cuestionario</a>*@  
+                            <div ng-show="ver_cues_of">
+                                <img src="~/Images/indicator.white.gif" /> Cargando ...
+                            </div>
+                            <div ng-show="!ver_cues_of && !error_cues_of && cuestionario_oferta <= 0">
+                              el cuestionario no posee preguntas para responder
+
+                            </div>
+                            <div ng-show="!ver_cues_of && error_cues_of ">
+                               Hubo un Problema Al Cargar el cuestinario favor refrescar la pagina
+                            </div>
+                            <div ng-show="cuestionario_oferta.length > 0">
+                                <ul class="list-group">
+                                    <li class="list-group-item list-group-item-info">
+                                        <h1 class="text-center text-primary">Cuestionario</h1>
+                                    </li>
+                                </ul>
+                                
+                                @Html.Hidden("id_oferta", (Int32)@ViewBag.id_oferta, new { ng_model = "datos_oferta.id_oferta", ng_init = "datos_oferta.id_oferta = " + (Int32)@ViewBag.id_oferta })
+                                <div ng-repeat="cues_o in cuestionario_oferta">
+                                    @Html.Hidden("id_cuestionario", "cues_o.id_cuestionario", new { ng_model = "datos_oferta.id_cuestionario", ng_init = "datos_oferta.id_cuestionario = cues_o.id_cuestionario" })
+                                    <div ng-if="cues_o.id_cuestionario != 0">
+
+                                        <ul class="list-group">
+                                            <li class="list-group-item list-group-item-info">
+                                                <h3 class="text-center text-primary"> {{cues_o.nombre_pregunta}}</h3>
+                                            </li>
+
+                                            <li class="list-group-item" ng-hide="cues_o.id_tipo_pregunta < 1">
+
+                                                @Html.Hidden("id_pregunta_radio", "cues_o.id_pregunta", new { ng_model = "respuesta_cuestionario_multiple[$index].id_pregunta", ng_init = "respuesta_cuestionario_multiple[$index].id_pregunta = cues_o.id_pregunta" })
+                                                @Html.Hidden("id_tipo_pregunta", "cues_o.id_tipo_pregunta", new { ng_model = "respuesta_cuestionario_multiple[$index].id_tipo_pregunta", ng_init = "respuesta_cuestionario_multiple[$index].id_tipo_pregunta = cues_o.id_tipo_pregunta" })
+                                                <select name="singleSelect" id="singleSelect" ng-model="respuesta_cuestionario_multiple[$index].id_respuesta" class="btn btn-block btn-info btn-lg text-center">
+                                                    <option value="">---Seleccione---</option> <!-- not selected / blank option -->
+
+                                                    <option ng-repeat="k in cues_o.vista_respuesta_multiple_pregunta" value="{{k.id_respuesta}}">{{k.nombre_respuesta}}</option> <!-- interpolation -->
+
+                                                </select>
+                                            </li>
+
+
+
+
+                                            <li class="list-group-item text-center" ng-hide="cues_o.id_tipo_pregunta > 0">
+
+                                                @Html.Hidden("id_tipo_pregunta", "cues_o.id_tipo_pregunta", new { ng_model = "respuesta_cuestionario_multiple[$index].id_tipo_pregunta", ng_init = "respuesta_cuestionario_multiple[$index].id_tipo_pregunta = cues_o.id_tipo_pregunta" })
+                                                <textarea class="form-control" rows="3" id="{{cues_o.id_pregunta}}" name="{{cues_o.id_pregunta}}" ng-model="respuesta_cuestionario_multiple[$index].respuesta_pregunta" placeholder="Escriba su Respuesta Aqui..."></textarea>
+
+                                            </li>
+
+
+
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-block btn-info btn-lg">POSTULAR</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+﻿<md-dialog>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="lg-dialog-content">
+    
+                    <form name="mainForm" data-ng-submit="eliminar_documento()" data-ng-controller="data1" ng-model="elimina_documento" novalidate>
+                        <div class="text-center well">
+                            <h1 class="text-center">
+                                Eliminar Documento
+                            </h1>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <h3>Desea eliminar este Documento</h3>
+                                </li>
+                             
+                                        @Html.Hidden("id_documento_curriculum", (Int32)ViewBag.id_documento, new { @ng_model = "elimina_documento.id", ng_init = "elimina_documento.id = " + (Int32)ViewBag.id_documento })
+                                   
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-block btn-danger btn-lg">Eliminar</button>
+
+
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="form-group ">
+                                                <div ng-controller="data1">
+
+                                                    <a href="" class="btn  btn-block btn-info btn-lg" ng-click="closeDialog()">Cancelar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+       
+    </md-dialog-content>
+</md-dialog>
+

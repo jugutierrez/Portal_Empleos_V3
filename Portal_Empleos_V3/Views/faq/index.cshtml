@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "FAQ";
+}
+<div class="container">
+    <div class="well" ng-controller="faq_portal">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well">
+                    <h1 class="text-center">Preguntas frecuentes</h1>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row" ng-init="c_p_f()">
+            <div class="well" ng-init="p_f()">
+                <div class="panel-group" id="b{{c_p_f.id_categoria}}" ng-repeat="c_p_f in c_preguntas_frecuentes">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title clearfix">
+                                <a data-toggle="collapse" data-parent="#b{{c_p_f.id_categoria}}" href="#{{$index}}">
+                                    <label class="text-info">{{c_p_f.nombre_categoria}}<i class="fa fa-caret-square-o-down fa-fw pull-right text-info"></i></label>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="{{$index}}" class="panel-collapse collapse">
+
+                            <div class="panel-group" id="a{{c_p_f.id_categoria}}">
+                                <div class="panel panel-default" ng-repeat="p_f_m in preguntas_frecuentes" ng-if="p_f_m.id_categoria == c_p_f.id_categoria">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#a{{c_p_f.id_categoria}}" href="#b{{$index}}{{p_f_m.id_pregunta}}">
+                                                <label> {{p_f_m.nombre_pregunta}} <i class="fa et-square-o-down fa-fw pull-right text-info fa-question-circle"></i></label>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="b{{$index}}{{p_f_m.id_pregunta}}" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <h4>{{p_f_m.respuesta_pregunta}}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

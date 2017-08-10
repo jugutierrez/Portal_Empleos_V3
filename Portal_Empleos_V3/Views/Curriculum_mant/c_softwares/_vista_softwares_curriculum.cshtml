@@ -1,0 +1,59 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading clearfix">
+
+        <div class="pull-right">
+            <div ng-controller="data1">
+
+                <a href="" ng-click="abremodal('../Curriculum_mant/agregar_vista_softwares_curriculum' ,'')" class="btn btn-default "><i class="fa fa-fw fa-lg fa-plus-circle text-warning"></i>Agregar</a>
+            </div>
+        </div>
+        <div class="pull-left">
+            <h3>Mis Conocimientos en Softwares</h3>
+        </div>
+    </div>
+    <div class="panel-body" style="word-break: break-word">
+        <div class="col-md-12">
+ 
+
+         
+
+            <div ng-show="ver_soft">
+                <div layout="row" layout-sm="column" layout-align="space-around">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </div>
+            <div ng-show="!ver_soft && soft_curriculum.length <= 0">
+                No se Encontraron resultados ...
+
+            </div>
+            <div ng-show="!ver_soft && error_soft ">
+                error viejo no cargo ...
+
+            </div>
+            <div ng-show="soft_curriculum.length > 0">
+                <div ng-controller="data1">
+
+                   
+
+                    <div ng-repeat="soft_c in soft_curriculum track by $index">
+
+
+                        <h3>
+                            <span class="label label-info item-select">
+                                {{::soft_c.nombre_software}} ({{::soft_c.nombre_grado_conocimiento_software}}) 
+                                <a ng-click="abremodal('../Curriculum_mant/eliminar_vista_softwares_curriculum/' , soft_c.id_software_curriculum )">
+
+                                    <i class="fa  fa-close"></i>
+                                </a>
+
+
+                            </span>
+                        </h3>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+</div>

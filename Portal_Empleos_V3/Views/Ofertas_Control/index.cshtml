@@ -1,0 +1,454 @@
+﻿
+@model PagedList.IPagedList<Portal_Empleos_V3.Models.vista_buscador_oferta>
+@using PagedList.Mvc
+@using PagedList;
+@{
+    ViewBag.Title = "Listado de Ofertas";
+}
+<style>
+    div.polaroid {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+    }
+</style>
+
+    <div class="container">
+
+
+        <div class="row">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="well">
+                     
+                            <h1 class="text-center">
+                                Mis Ofertas
+
+                            </h1>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-4" id="filtros-base">
+                    <div class="well">
+                        @using (Html.BeginForm("filtrar_full", "Ofertas_Control", FormMethod.Post, new { @id = "my-form" }))
+
+                        {
+
+
+
+                            <div class="title-filtro">
+                                <h2>FILTROS <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Utiliza Los Filtros para realizar una busqueda mas exacta a tu perfil de persona que necesitas."></i></h2>
+
+                            </div>
+                    <!--TABS EDAD-->
+                            <div class="panel panel-default" id="f1">
+                                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#filtro0">
+                                    <h4 class="panel-title">
+                                        Categorias
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#filtro0">
+
+
+                                            <i class="fa fa-border fa-lg pull-right text-muted fa-angle-double-down"></i>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="filtro0" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <div class="col-sm-12 col-md-12">
+                                         @Html.DropDownList("id_categoria", (IEnumerable<SelectListItem>)ViewBag.id_categoria, "Seleccione...", new { @class = "form-control" }) 
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#filtro1">
+                                    <h4 class="panel-title">
+                                        Tipo de Oferta
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#filtro1">
+
+
+                                            <i class="fa fa-border fa-lg pull-right text-muted fa-angle-double-down"></i>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="filtro1" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <div class="col-sm-12 col-md-12">
+                                        @Html.DropDownList("id_tipo_oferta", (IEnumerable<SelectListItem>)ViewBag.id_tipo_oferta, "Seleccione...", new { @class = "form-control" })
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#filtro2">
+                                    <h4 class="panel-title">
+                                        Tipo de Contrato
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#filtro2">
+
+
+                                            <i class="fa fa-border fa-lg pull-right text-muted fa-angle-double-down"></i>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="filtro2" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <div class="col-sm-12 col-md-12">
+                                          @Html.DropDownList("id_contrato_oferta", (IEnumerable<SelectListItem>)ViewBag.id_contrato_oferta, "Seleccione...", new { @class = "form-control" })
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#filtro3">
+                                    <h4 class="panel-title">
+                                        Jornada de Trabajo
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#filtro3">
+
+
+                                            <i class="fa fa-border fa-lg pull-right text-muted fa-angle-double-down"></i>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="filtro3" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <div class="col-sm-12 col-md-12">
+                                           @Html.DropDownList("id_jornada_oferta", (IEnumerable<SelectListItem>)ViewBag.id_jornada_oferta, "Seleccione...", new { @class = "form-control" })
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#filtro4">
+                                    <h4 class="panel-title">
+                                        monto oferta
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#filtro4">
+
+
+                                            <i class="fa fa-border fa-lg pull-right text-muted fa-angle-double-down"></i>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="filtro4" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+
+                                        <div class="col-sm-12">
+                                            <input id="monto_maximo" name="monto_maximo" type="text" placeholder="Hasta" class="form-control" onkeypress="return soloNumeros(event)" maxlength="8" value="@ViewBag.filtros5">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                    
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#filtro5">
+                                    <h4 class="panel-title">
+                                        ultima actualizacion
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#filtro5">
+
+
+                                            <i class="fa fa-border fa-lg pull-right text-muted fa-angle-double-down"></i>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="filtro5" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+
+                                        <div class="col-sm-12">
+                                          
+                                            @Html.DropDownList("ultimo_update", (IEnumerable<SelectListItem>)ViewBag.ultimo_update, "Seleccione...", new { @class = "form-control" })
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="well">
+
+
+
+
+                                <button type="submit" class="btn btn-lg btn-block btn-info">
+                                    Realizar Busqueda
+                                    <i class="fa fa-fw fa-lg fa-search"></i>
+                                </button>
+
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+                <div class="col-md-8">
+            
+                    <div class="row">
+                        <div class="well">
+                            <div class="btn-toolbar" role="toolbar">
+
+                    
+                              
+                                <div class="row">
+                                    <div class="col-md-8 ">
+                                        @using (Html.BeginForm("filtrar_basico", "Ofertas_Control", FormMethod.Get))
+                                        {
+
+                                            <div class="input-group">
+                                                <input type="text" id="palabra_clave" name="palabra_clave" class="form-control" placeholder="Palabra clave, Puesto o Estudio" value="@ViewBag.palabra_clave">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="submit"><i class="fa fa-fw fa-search"></i></button>
+                                                </span>
+
+                                            </div>
+
+
+                                        }
+
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <i class="fa fa-2x fa-question-circle" data-toggle="tooltip" data-placement="right" title="Recuerda que el buscador traera todos aquellos candidatos que contengan la palabra ha sido ingresada en cualquier parte de su currículum. Para búsquedas más específicas utiliza los filtros avanzados."></i>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row text-center">
+                               
+                                        @if (Model.PageCount > 1)
+            {
+
+
+                                            @Html.PagedListPager(Model, page => Url.Action(ViewBag.control,
+                           new
+                           {
+                               page = page,
+                               id_categoria = ViewBag.filtros1,
+                               id_tipo_oferta = ViewBag.filtros2,
+                               id_contrato_oferta = ViewBag.filtros3,
+                               id_jornada_oferta = ViewBag.filtros4,
+
+                               monto_maximo = ViewBag.filtros5,
+          
+                               ultimo_update = ViewBag.filtros6,
+                               palabra_clave = ViewBag.palabra_clave,
+                               id_estado_oferta_filtro = ViewBag.id_estado_oferta_filtro
+                           }))
+
+
+
+                                        }
+                                  
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="well clearfix">
+                            @if (Model == null || Model.Count() == 0)
+                            {        <h2> <label> NO SE ENCONTRARON RESULTADOS</label></h2>
+                            }
+                            else
+                            {
+                                foreach (var item in Model)
+                                {
+
+
+                                    <div class="col-md-12">
+
+                                        <ul class="list-group">
+                                            <li class="list-group-item list-group-item-info">
+                                                <div class="row">
+                                                    <div class="col-xs-8">
+                                                        <div class="row">
+                                                            <div class="col-xs-12">
+
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item">
+                                                                        <h2>
+                                                                            <a href="@Url.Action("vista_detalle_oferta", "Ofertas_Control", new { id = item.id_oferta })">@Html.DisplayFor(modelItem => item.nombre_oferta)</a>
+                                                                            <small>( codigo referencial: @Html.DisplayFor(modelItem => item.id_oferta) )</small>
+                                                                        </h2>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div> <ul class="list-group">
+                                                            <li class="list-group-item">
+                                                                <div class="row">
+
+                                                                    <div class="col-xs-4">
+                                                                        <h4 class="text-center">
+                                                                            Direccion:
+                                                                            <small>
+                                                                                <span class="label label-info ">
+                                                                                    @Html.DisplayFor(modelItem => item.nombre_direccion)
+                                                                                </span>
+
+                                                                            </small>
+
+
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="col-xs-4">
+                                                                        <h4 class="text-center">
+                                                                            Tipo Contrato:
+                                                                            <small>
+                                                                                <span class="label label-info ">
+                                                                                    @Html.DisplayFor(modelItem => item.nombre_contrato_oferta)
+
+                                                                                </span>
+
+                                                                            </small>
+
+
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="col-xs-4 ">
+                                                                        <h4 class="text-center">
+                                                                           Cantidad Postulados:
+
+                                                                           
+                                                                            <span class="label label-info text-center">
+
+                                                                                @Html.DisplayFor(modelItem => item.cantidad_postulados_oferta)
+
+                                                                            </span>
+                                                                        </h4>
+                                                                           
+
+
+                                                                       
+                                                                    </div>
+
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                     
+                                                        <div class="row">
+                                                            <div class="col-xs-12">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item"> Etiquetas:
+                                                                        <h3>
+                                                                            @if (item.categorias_oferta.Count() > 0)
+                                                                            {
+                                                                                foreach (var item2 in item.categorias_oferta)
+                                                                                {
+
+                                                                            <small>
+                                                                                <span class="label label-info " style="margin-right: 5px">
+                                                                                  @Html.DisplayFor(modelItem => item2.nombre_categoria)
+
+                                                                                </span>
+                                                                               
+                                                                            </small>
+
+                                                                                            } }
+                                                                                        else {
+                                                                                                         <small >
+                                                                                <span class="label label-info " style="margin-right: 5px">
+                                                                                 Oferta Sin Categorias asignadas
+                                                                                </span>
+                                                                               
+                                                                            </small>
+                                                                                }
+                                                                            
+                                                                        </h3>
+
+                                                                    </li>
+                                                                </ul>
+
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                        <div class="col-xs-4">
+                                                            <div class="row">
+                                                                <div class="col-xs-12">
+                                                               
+                                                                    <ul class="list-group">
+                                                                        <li class="list-group-item">Publicada el:</li>
+                                                                        <li class="list-group-item text-center"><span class="label label-info">
+                                                                                                        @Html.DisplayFor(modelItem => item.fecha_creacion_oferta)
+</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                    
+                                                       
+                                                                    
+                                                            
+                                                                  
+</div>
+                                                            </div>
+                                                            <div class="row">
+                                                               
+                                                                <div class="col-xs-12">
+                                                                    <ul class="list-group">
+                                                                        <li class="list-group-item">Compartir:</li>
+                                                                        <li class="list-group-item text-center">
+                                                                      
+                                                                           
+                                                                            <div class="fb-share-button" data-href="@(Url.Action("vista_detalle_oferta", "Ofertas_Control", new { id = item.id_oferta }))" data-layout="box_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="@(Url.Action("vista_detalle_oferta", "Ofertas_Control", new { id = item.id_oferta }))">Compartir</a></div>
+                                                                        </li>
+                                                                        <li class="list-group-item"><a class="btn btn-lg btn-block btn-info" href="@Url.Action("vista_detalle_oferta", "Ofertas_Control", new { id = item.id_oferta })">Postular</a></li>
+                                                                    </ul>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                          
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        
+                               
+                                
+
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="well text-center">
+                            @if (Model.PageCount > 1)
+            {
+
+
+                                @Html.PagedListPager(Model, page => Url.Action(ViewBag.control,
+                           new
+                           {
+                               page = page,
+                               id_categoria = ViewBag.filtros1,
+                               id_tipo_oferta = ViewBag.filtros2,
+                               id_contrato_oferta = ViewBag.filtros3,
+                               id_jornada_oferta = ViewBag.filtros4,
+                               monto_maximo = ViewBag.filtros5,
+                               ultimo_update = ViewBag.filtros6,
+                               palabra_clave = ViewBag.palabra_clave,
+                          
+                           }))
+
+
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+ 

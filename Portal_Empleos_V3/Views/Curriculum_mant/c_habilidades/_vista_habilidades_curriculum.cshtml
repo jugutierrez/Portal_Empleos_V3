@@ -1,0 +1,56 @@
+﻿
+<div class="panel panel-primary" >
+    <div class="panel-heading clearfix">
+
+        <div class="pull-right">
+            <div ng-controller="data1">
+
+                <a href="" ng-click="abremodal('../Curriculum_mant/agregar_vista_habilidades_curriculum' ,'')" class="btn btn-default "><i class="fa fa-fw fa-lg fa-plus-circle text-warning"></i>Agregar</a>
+            </div>
+        </div>
+        <div class="pull-left">
+            <h3>Mis Competencias</h3>
+        </div>
+    </div>
+    <div class="panel-body" style="word-break: break-word">
+        <div class="col-md-12">
+
+
+     
+
+            <div ng-show="ver_hab">
+                <div layout="row" layout-sm="column" layout-align="space-around">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </div>
+            <div ng-show="!ver_hab && hab_curriculum.length <= 0">
+                No se Encontraron resultados ...
+
+            </div>
+            <div ng-show="!ver_hab && error_hab ">
+                error viejo no cargo ...
+
+            </div>
+            <div ng-show="hab_curriculum.length > 0">
+                <div ng-controller="data1">
+                    <div ng-repeat="hab_c in hab_curriculum track by $index">
+
+
+                        <h3>
+                            <span class="label label-info item-select">
+                                {{::hab_c.nombre_habilidad}} ({{::hab_c.nombre_grado_habilidad}}) 
+                                <a ng-click="abremodal('../Curriculum_mant/eliminar_vista_habilidades_curriculum/' , hab_c.id_habilidad_curriculum)">
+
+                                    <i class="fa  fa-close"></i>
+                                </a>
+
+                            </span>
+                        </h3>
+                    </div>
+
+                </div>
+                </div>
+
+        </div>
+    </div>
+</div>

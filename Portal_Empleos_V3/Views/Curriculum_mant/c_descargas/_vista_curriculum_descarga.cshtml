@@ -1,0 +1,529 @@
+﻿@model Portal_Empleos_v2.Models.super_modelo_curriculum
+
+
+<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+      rel="stylesheet" type="text/css">
+<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
+      rel="stylesheet" type="text/css">
+
+<style>
+    .item-select {
+        font-family: 'Lato';
+        display: inline;
+        float: left;
+        margin: 0 5px 5px 0;
+        word-wrap: break-word;
+    }
+
+    .label {
+        white-space: normal !important;
+    }
+</style>
+
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1><ins>Datos De Contacto</ins></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <dl class="dl-horizontal" style="margin:auto;">
+                        <dt>Nombre Completo:</dt>
+                        <dd><h4 class="text-info" style="margin:auto;">@Html.DisplayFor(model => model.persona_curriculum_vista.nombre_persona) @Html.DisplayFor(model => model.persona_curriculum_vista.apellido_paterno_persona) @Html.DisplayFor(model => model.persona_curriculum_vista.apellido_materno_persona)</h4></dd>
+                    </dl>
+                </li>
+                <li class="list-group-item">
+                    <dl class="dl-horizontal" style="margin:auto;">
+                        <dt>Rut:</dt>
+                        <dd><h4 class="text-info" style="margin:auto;">@Html.DisplayFor(model => model.persona_curriculum_vista.identificacion_persona) -  </h4></dd>
+                    </dl>
+                </li>
+                <li class="list-group-item">
+                    <dl class="dl-horizontal" style="margin:auto;">
+                        <dt> Fecha de Nacimiento: </dt>
+                        <dd><h4 class="text-info" style="margin:auto;">@Html.DisplayFor(model => model.persona_curriculum_vista.fecha_nacimiento_persona)</h4></dd>
+                    </dl>
+                </li>
+                <li class="list-group-item">
+                    <dl class="dl-horizontal" style="margin:auto;">
+                        <dt> Direccion: </dt>
+                        <dd><h4 class="text-info" style="margin:auto;">@Html.DisplayFor(model => model.persona_curriculum_vista.direccion_curriculum)</h4></dd>
+                    </dl>
+                </li>
+                <li class="list-group-item">
+                    <dl class="dl-horizontal" style="margin:auto;">
+                        <dt> Correo Electronico: </dt>
+                        <dd><h4 class="text-info" style="margin:auto;">@Html.DisplayFor(model => model.persona_curriculum_vista.correo_electronico_persona)</h4></dd>
+                    </dl>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <dl class="dl-horizontal" style="margin:auto;">
+                                <dt> Telefono: </dt>
+                                <dd><h4 class="text-info" style="margin:auto;">@Html.DisplayFor(model => model.persona_curriculum_vista.telefono_curriculum_1)</h4></dd>
+                                <dt> Celular: </dt>
+
+                                <dd><h4 class="text-info" style="margin:auto;">@Html.DisplayFor(model => model.persona_curriculum_vista.telefono_curriculum_2)</h4></dd>
+                            </dl>
+
+                        </div>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+        <div class="col-xs-4 text-center">
+            @if (Model != null)
+            {
+                if (Model.curriculums.foto_curriculum != null)
+                {
+                    <img src="data:image/png;base64,@Convert.ToBase64String(Model.curriculums.foto_curriculum,0,Model.curriculums.foto_curriculum.Length)"
+                         class="center-block img-responsive img-thumbnail">
+                }
+                else
+                {
+                    <img src="http://k15.kn3.net/05DC618D2.jpg"
+                         class="center-block img-responsive img-thumbnail">
+                }
+
+
+
+            }
+            else
+            {
+                <img src="http://www.sanitas.cl/wp-content/uploads/2015/07/sin.jpg"
+                     class="center-block img-responsive img-thumbnail">
+            }
+            <label>(Foto Opcional)</label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h1><ins>Presentacion</ins></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <blockquote>
+            <p>
+
+                @if (Model == null || Model.curriculums.descripcion_curriculum == null)
+                {
+                    <h3 class="text-center text-info">El Curriculum actualmente no cuenta con una presentacion por parte del Postulante.</h3>
+                }
+
+
+                else
+                {
+                    <h4 class="text-info"> @Html.DisplayFor(model => model.curriculums.descripcion_curriculum)</h4>
+                }
+
+
+            </p>
+        </blockquote>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+        <h1><ins>Conocimientos y Competencias</ins></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <blockquote>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3>Estudios:</h3>
+                </div>
+            </div>
+            @if (Model == null || Model.estudios_curriculums_vista.Count() == 0)
+            {
+
+                <div class="row" style="border:dashed; margin-bottom:10px;">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3 class="text-info text-center">El Postulante no a informado sobre ningun estudio Previo.</h3>
+                        </div>
+                    </div>
+
+
+                </div>
+            }
+            else
+            {
+
+                foreach (var item in Model.estudios_curriculums_vista)
+                {
+                    <div class="row" style="border:dashed; margin-bottom:5px;">
+                        <div class="col-xs-4">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h4 class="text-center">Duracion:</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h4 class="text-center">Desde:</h4>
+                                </div>
+                                <div class="col-xs-6">
+                                    <h4 class="text-center">Hasta:</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h4 class="text-info text-center">@Html.DisplayFor(modelItem => item.ano_inicio_estudio_curriculum)</h4>
+                                </div>
+                                <div class="col-xs-6">
+                                    <h4 class="text-info text-center">@Html.DisplayFor(modelItem => item.ano_termino_estudio_curriculum)</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-8">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    Titulo:  <h4 class="text-info"> @Html.DisplayFor(modelItem => item.nombre_estudio)</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    Institucion:      <h4 class="text-info"> @Html.DisplayFor(modelItem => item.nombre_institucion)</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            <hr>
+            <div class="row" style="border:dashed; margin-bottom:5px;">
+                <div class="col-xs-4">
+                    <h3>Idiomas:</h3>
+
+
+
+                </div>
+                <div class="col-xs-8">
+                    @if (Model == null || Model.idiomas_curriculums_vista.Count() == 0)
+                    {
+                        <h3 class="text-info" style="word-wrap:break-word">
+                            El Postulante no a informado sobre ningun Idioma.
+
+                        </h3>
+                    }
+                    else
+                    {
+
+
+                        foreach (var item in Model.idiomas_curriculums_vista)
+                        {
+
+                            <h4 class="text-info" style="word-wrap:break-word">
+                                @Html.DisplayFor(modelItem => item.nombre_idioma) ( @Html.DisplayFor(modelItem => item.nombre_nivel_idioma))
+
+                            </h4>
+
+                        }
+                    }
+                </div>
+            </div>
+
+            <div class="row" style="border:dashed;margin-bottom:5px; ">
+                <div class="col-xs-4">
+                    <h3>Sofwares que maneja:</h3>
+                </div>
+                <div class="col-xs-8">
+                    @if (Model == null || Model.softwares_curriculums_vista.Count() == 0)
+                    {
+                        <h3 class="text-info" style="word-wrap:break-word">
+                            El Postulante no a informado sobre ningun uso de Software.
+                        </h3>
+                    }
+                    else
+                    {
+                        foreach (var item in Model.softwares_curriculums_vista)
+                        {
+                            <h4 class="text-info" style="word-wrap:break-word">
+                                @Html.DisplayFor(modelItem => item.nombre_software) ( @Html.DisplayFor(modelItem => item.nombre_grado_conocimiento_software))
+                            </h4>
+                        }
+                    }
+
+
+
+                </div>
+            </div>
+            <div class="row" style="border:dashed;margin-bottom:5px;">
+                <div class="col-xs-4">
+                    <h3>Competencias:</h3>
+                </div>
+                <div class="col-xs-8">
+
+                    @if (Model == null || Model.habilidades_curriculums_vista.Count() == 0)
+                    {
+                        <h3 class="text-info" style="word-wrap:break-word">
+                            El Postulante no a informado sobre ninguna Competencia.
+                        </h3>
+                    }
+                    else
+                    {
+                        foreach (var item in Model.habilidades_curriculums_vista)
+                        {
+
+
+                            <h4 class="text-info" style="word-wrap:break-word">@Html.DisplayFor(modelItem => item.nombre_habilidad) ( @Html.DisplayFor(modelItem => item.nombre_grado_habilidad))</h4>
+
+                        }
+                    }
+
+                </div>
+            </div>
+
+        </blockquote>
+    </div>
+</div>
+
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+        <h1><ins>Experiencias Laborales</ins></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <blockquote>
+            @if (Model == null || Model.experiencias_laborales_curriculums_vista.Count() == 0)
+            {          <div class="row" style="border:dashed">
+                        <div class="col-xs-12"><h3 class="text-info text-center"> El Postulante no a informado sobre ninguna Experiencia laboral.</h3></div>
+                    </div>
+            }
+            else
+            {
+
+
+                foreach (var item in Model.experiencias_laborales_curriculums_vista)
+                {
+                    <div class="row" style="border:dashed;margin-bottom:5px;">
+                        <div class="col-xs-3">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h4 class="text-center">Año duracion</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h4 class="text-center">Desde:</h4>
+                                </div>
+                                <div class="col-xs-6">
+                                    <h4 class="text-center">Hasta:</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h4 class="text-info text-center">@Html.DisplayFor(modelItem => item.ano_inicio_experiencia_laboral)</h4>
+                                </div>
+                                <div class="col-xs-6">
+                                    <h4 class="text-info text-center">@Html.DisplayFor(modelItem => item.ano_termino_experiencia_laboral)</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    Cargo Ejercido: <h4 class="text-info"> @Html.DisplayFor(modelItem => item.nombre_experiencia_laboral)</h4>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    Responsabilidad cargo: <h4 class="text-info"> @Html.DisplayFor(modelItem => item.nombre_cargo_experiencia_laboral)</h4>
+                                </div>
+
+                                <div class="col-xs-4">
+                                    Empresa: <h4 class="text-info"> @Html.DisplayFor(modelItem => item.empresa_experiencia_laboral)</h4>
+                                </div>
+                                <div class="col-xs-4">
+                                    Area: <h4 class="text-info"> @Html.DisplayFor(modelItem => item.nombre_area_experiencia_laboral)</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    Descripcion de tareas realizadas:<h4 class="text-info">@Html.DisplayFor(modelItem => item.detalle_experiencia_laboral)</h4>
+                                </div>
+                            </div>
+                            @if (item.id_referencia_laboral != 0)
+                            {
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <h4>Referencia Laboral:
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4> Nombre:</h4><h4 class="text-info"> @Html.DisplayFor(modelItem => item.referencia_laboral.nombre_referencia_laboral)</h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <h4> Cargo:</h4><h4 class="text-info">@Html.DisplayFor(modelItem => item.referencia_laboral.cargo_referencia_laboral)</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4> Telefono:</h4> <h4 class="text-info">@Html.DisplayFor(modelItem => item.referencia_laboral.contacto_referencia_laboral)</h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <h4> Email:</h4><h4 class="text-info">@Html.DisplayFor(modelItem => item.referencia_laboral.correo_referencia_laboral)</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                            else
+                            {
+
+                                <div class="row" style="border:dashed;margin-bottom:5px;">
+                                    <div class="col-xs-12">
+                                        <h3 class="text-info text-center"> El Postulante no a informado ningun referente.</h3>
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </blockquote>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+        <h1><ins>Formacion adicional y otros</ins></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <blockquote>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3>Capacitaciones:</h3>
+                </div>
+            </div>
+            @if (Model == null || Model.capacitaciones_curiculums_vista.Count() == 0)
+            {
+
+                <div class="row" style="border:dashed;margin-bottom:5px;">
+                    <div class="col-xs-12">
+                        <h3 class="text-info text-center"> El Postulante no a informado sobre ninguna Capacitacion.</h3>
+                    </div>
+
+                </div>
+            }
+            else
+            {
+
+                foreach (var item in Model.capacitaciones_curiculums_vista)
+                {
+                    <div class="row" style="border:dashed;margin-bottom:5px;">
+                        <div class="col-xs-4">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h4 class="text-center"> Realizada el:</h4>
+                                </div>
+                                <div class="col-xs-12">
+                                    <h4 class="text-center">Horas Cursadas</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h4 class="text-center text-info">@Html.DisplayFor(modelItem => item.ano_inicio_capacitacion_curriculum)</h4>
+                                </div>
+                                <div class="col-xs-6">
+                                    <h4 class="text-center text-info">@Html.DisplayFor(modelItem => item.horas_capacitacion)</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-8">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    Nombre Capacitacion:   <h4 class="text-info"> @Html.DisplayFor(modelItem => item.nombre_capacitacion)</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    Institucion que la impartio:  <h4 class="text-info"> @Html.DisplayFor(modelItem => item.nombre_institucion)</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    Resumen Capacitacion:  <h4 class="text-info"> @Html.DisplayFor(modelItem => item.descripcion_capacitacion)</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3>Documentos Relevantes:</h3>
+                </div>
+            </div>
+            @if (Model == null || Model.documentos_curriculums.Count() == 0)
+            {<div class="row" style="border:dashed;margin-bottom:5px;">
+                        <h3 class="text-info text-center" style="word-wrap:break-word">
+                            El Postulante no a adjuntado ningun Documento.
+
+                        </h3>
+                    </div>
+            }
+            else
+            {
+
+
+                foreach (var item in Model.documentos_curriculums)
+                {
+
+
+                    <div class="row" style="border:dashed;margin-bottom:5px;">
+                        <div class="col-xs-4 ">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h4>Nombre del documento</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-xs-12">
+                                    <h4 class="text-info"> @Html.DisplayFor(modelItem => item.nombre_documento_curriculum)</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-8 ">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h4>Enlace de descarga</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <a target="_blank" href="@Html.DisplayFor(modelItem => item.enlace_documento_curriculum)" class="text-info"> @Html.DisplayFor(modelItem => item.enlace_documento_curriculum)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+        </blockquote>
+    </div>
+</div>

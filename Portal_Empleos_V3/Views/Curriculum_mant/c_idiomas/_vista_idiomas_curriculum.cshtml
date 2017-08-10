@@ -1,0 +1,56 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading clearfix">
+
+        <div class="pull-right">
+            <div ng-controller="data1">
+
+                <a href="" ng-click="abremodal('../Curriculum_mant/agregar_vista_idiomas_curriculum' ,'')" class="btn btn-default "><i class="fa fa-fw fa-lg fa-plus-circle text-warning"></i>Agregar</a>
+            </div>
+        </div>
+        <div class="pull-left">
+            <h3>Mis Idiomas</h3>
+        </div>
+    </div>
+    <div class="panel-body" style="word-break: break-word">
+        <div class="col-md-12">
+
+
+           
+
+            <div ng-show="ver_idioma">
+                <div layout="row" layout-sm="column" layout-align="space-around">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </div>
+            <div ng-show="!ver_idioma && idioma_curriculum.length <= 0">
+                No se Encontraron resultados ...
+
+            </div>
+            <div ng-show="!ver_idioma && error_idioma ">
+                error viejo no cargo ...
+
+            </div>
+            <div ng-show="idioma_curriculum.length > 0">
+                <div ng-controller="data1">
+                    <div ng-repeat="idioma_c in idioma_curriculum track by $index">
+
+
+                        <h3>
+                            <span class="label label-info item-select">
+                                {{::idioma_c.nombre_idioma}} ({{::idioma_c.nombre_nivel_idioma}}) 
+                                <a ng-click="abremodal('../Curriculum_mant/eliminar_vista_idiomas_curriculum/' , idioma_c.id_idioma_curriculum)">
+
+                                    <i class="fa  fa-close"></i>
+                                </a>
+
+                            </span>
+                        </h3>
+                    </div>
+                </div>
+
+                </div>
+
+        </div>
+
+    </div>
+</div>

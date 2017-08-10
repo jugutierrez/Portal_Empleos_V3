@@ -1,0 +1,59 @@
+﻿<md-dialog>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="lg-dialog-content">
+ 
+                    <form name="mainForm" data-ng-submit="agregar_documento()" data-ng-controller="data1" ng-model="agrega_documento">
+                        <div class="text-center well">
+                            <h1 class="text-center">Agregar Documento</h1>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <h3>Ingrese el nombre de su documento:</h3>
+                                </li>
+                                <li class="list-group-item">
+                                    <input type="text" class="form-control" id="nombre_documento" placeholder="EJ: diploma de carrera" ng-model="agrega_documento.nombre_documento_curriculum" />
+                                </li>
+                                <li class="list-group-item">
+                                    <h3>Ingrece el enlace del documento:</h3>
+                                </li>
+                                <li class="list-group-item">
+                                    <input type="text" class="form-control" id="enlace_documento" placeholder="EJ: https://www.google.cl" ng-model="agrega_documento.enlace_documento_curriculum" />
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-block btn-info btn-lg">Agregar</button>
+
+
+
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+
+
+                                            <div class="form-group ">
+                                                <div ng-controller="data1">
+
+                                                    <a href="" class="btn  btn-block btn-danger btn-lg" ng-click="closeDialog()">Cancelar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+         
+    </md-dialog-content>
+</md-dialog>

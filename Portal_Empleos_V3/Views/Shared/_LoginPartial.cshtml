@@ -1,0 +1,79 @@
+﻿
+
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    @if(Session.Keys.Count > 0)
+    { 
+        <a href='@Url.Action("Index", "Curriculum_mant")' class="navbar-brand" >
+            <div class="row">
+                <div class="col-xs-2">
+                    <img height="25" alt="Inicio" src='@Url.Content("~/Images/logo_muni.png")' class="center-block">
+                </div>
+                <div class="col-xs-10">
+                    <span class="label label-info"> Portal De Empleos</span>
+                </div>
+            </div>
+            </a>
+    }
+    else
+
+    {
+        <a href='@Url.Action("Index", "inicio")' class="navbar-brand">
+
+            <div class="row">
+                <div class="col-xs-2">
+                    <img height="25" alt="Inicio" src='@Url.Content("~/Images/logo_muni.png")' class="center-block">
+                </div>
+                <div class="col-xs-10">
+                    <span class="label label-info"> Portal De Empleos</span>
+                </div>
+            </div>
+        </a>
+    }
+
+
+ 
+   
+
+   
+
+</div>
+<div class="navbar-collapse collapse">
+  
+
+
+    
+        <ul class="nav navbar-nav">
+          @if (Session.Keys.Count > 0)
+          {
+            <li>@Html.ActionLink("Mi Curriculum", "vista_curriculum", "Curriculum_mant")</li>
+            <li>@Html.ActionLink("Mis Postulaciones", "vista_postulaciones", "Curriculum_mant")</li>
+           }
+            <li>@Html.ActionLink("Listado de Ofertas", "Index", "Ofertas_control")</li>
+             <li>@Html.ActionLink("Preguntas Frecuentes", "Index", "faq")</li>
+       
+        </ul>
+      
+          
+
+            <ul class="nav navbar-nav navbar-right">
+@if (Session.Keys.Count > 0)
+{
+              <li>@Html.ActionLink("Mi Cuenta", "index", "cuenta")</li>
+
+                <li>@Html.ActionLink("Cerrar Session", "LogOff", "login")</li>
+}
+else
+{
+                <li><a href="@Url.Action("index", "login")">Iniciar Sesion</a></li>
+}
+            </ul>
+        
+  
+ 
+    
+</div>

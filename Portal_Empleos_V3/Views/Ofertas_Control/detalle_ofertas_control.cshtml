@@ -1,0 +1,398 @@
+﻿@{
+    ViewBag.Title = "Detalle de la Oferta";
+}
+
+
+
+
+   
+
+
+
+    <div class="container"  ng-controller="control_detalle_ofertas">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="well">
+                                <img src="~/Images/logo_muni.png" class="center-block img-responsive img-rounded">
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="well text-center">
+                                <div ng-show="ver_det_of">
+                                    <img src="~/Images/indicator.white.gif" /> Cargando ...
+                                </div>
+                                <div ng-show="!ver_det_of && !error_det_of && ver_detalle_oferta == null">
+                                    No se Encontraron resultados ...
+
+                                </div>
+                                <div ng-show="!ver_det_of && error_det_of ">
+                                    error viejo no cargo ...
+
+                                </div>
+                                <div ng-show="!ver_det_of && !error_det_of && ver_detalle_oferta != null">
+                                    <h1 class="text-center">{{ver_detalle_oferta.nombre_oferta}}</h1>
+                                    <hr>
+                                    <h3 class="text-center">
+                                        <span class="label label-info">Codigo Referencial: {{ver_detalle_oferta.id_oferta}}</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="well">
+                                Publicada el:
+                                <hr>
+                                <h4 class="text-center">
+                                    <span class="label label-info">{{ver_detalle_oferta.fecha_creacion_oferta.replace('/Date(','').replace(')/','') | date:'dd-MM-yyyy'}}</span>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                   <hr />
+                    
+                    <div class="row" ng-if="ver_detalle_oferta.oferta_inclusiva  == 1">
+                        <div class="col-md-12">
+                            <div class="alert alert-dismissable alert-info">
+                                <h3 class="text-center text-muted">
+                                    <i class="fa fa-2x fa-fw fa-wheelchair text-muted"></i>
+                                    Esta oferta esta enfocada en la inclusividad de las personas
+                                    <i class="fa fa-2x fa-fw fa-wheelchair text-muted"></i>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div ng-init="vista_datos_detalle_oferta(@ViewBag.id_oferta)">
+                                    </div>
+                                    <div ng-show="ver_det_of">
+                                        <img src="~/Images/indicator.white.gif" /> Cargando ...
+                                    </div>
+                                    <div ng-show="!ver_det_of && !error_det_of && ver_detalle_oferta == null">
+                                        No se Encontraron resultados ...
+
+                                    </div>
+                                    <div ng-show="!ver_det_of && error_det_of ">
+                                        error viejo no cargo ...
+
+                                    </div>
+
+                                    <div ng-show="!ver_det_of && !error_det_of && ver_detalle_oferta != null">
+
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <p class="lead text-default text-left text-muted">Detalles:</p>
+                                            </div>
+                                            <div class="panel-body">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <h4>    <p> <i class="fa   fa-fw text-warning fa-suitcase"></i> Tipo de contrato: </p> <span class="label label-info">{{ver_detalle_oferta.nombre_contrato_oferta}}</span> </h4>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <h4>   <p><i class="fa  fa-fw text-warning fa-laptop"></i>Oferta:</p><span class="label label-info">{{ver_detalle_oferta.nombre_tipo_oferta}}</span></h4>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <h4>   <p> <i class="fa fa-fw text-warning fa-clock-o"></i>Jornada: </p><span class="label label-info">{{ver_detalle_oferta.nombre_jornada_oferta}}</span></h4>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <h4>  <p>  <i class="fa  fa-fw text-warning fa-dollar"></i> Sueldo:</p><span class="label label-info">{{ver_detalle_oferta.monto_oferta}}</span></h4>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <h4> <p><i class="fa  fa-fw text-warning fa-group"></i>Direccion: </p><span class="label label-info">{{ver_detalle_oferta.nombre_direccion}}</span></h4>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <h4>  <p>  <i class="fa  fa-fw text-warning fa-map-marker"></i> Area: </p><span class="label label-info">{{ver_detalle_oferta.nombre_departamento}}</span> , <span class="label label-info">{{ver_detalle_oferta.nombre_area}}</span></h4>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <hr>
+                            </div>
+                                <div class="row">
+
+                            
+                                    <div class="col-md-12">
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <p class="lead text-default text-left text-muted">Documentos Requeridos</p>
+
+                                            </div>
+                                            <div class="panel-body" style="word-break: break-word;">
+                                                
+
+                                                <div ng-init="vista_documentos_oferta(@ViewBag.id_oferta)">
+
+                                                    <div ng-show="ver_doc_of">
+                                                        <img src="~/Images/indicator.white.gif" /> Cargando ...
+                                                    </div>
+                                                    <div ng-show="!ver_doc_of && !error_doc_of && doc_oferta <= 0">
+                                                        No se Encontraron resultados ...
+
+                                                    </div>
+                                                    <div ng-show="!ver_doc_of && error_doc_of  ">
+                                                        error viejo no cargo ...
+
+                                                    </div>
+
+                                                    <div ng-show="doc_oferta.length > 0">
+                                                        <div ng-controller="data1">
+                                                            <div ng-repeat="doc_c in doc_oferta" class="text-center">
+
+
+                                                                <h3>
+                                                                    <span class="label label-info ">
+                                                                    
+                                                                        <a ng-click="abremodal('../detalle_vista_documentos_curriculum/' , doc_c.id_oferta_documento)">{{doc_c.nombre_documento_oferta}} ({{doc_c.nombre_relevancia_documento}})</a>
+
+                                                                           
+                                                                      
+
+                                                                    </span>
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                          
+                        </div>
+                        <div class="col-md-8">
+                          
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <ul class="list-group" style="word-break: break-word">
+                                            <li class="list-group-item" ng-init="vista_categorias_oferta(@ViewBag.id_oferta)">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        Etiquetas:
+                                                       
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+
+
+                                                        <div ng-show="ver_cat_of">
+                                                            <img src="~/Images/indicator.white.gif" /> Cargando ...
+                                                        </div>
+                                                        <div ng-show="!ver_cat_of && !error_cat_of && cat_oferta <= 0">
+                                                            No se Encontraron resultados ...
+
+                                                        </div>
+                                                        <div ng-show="!ver_cat_of && error_cat_of ">
+                                                            error viejo no cargo ...
+
+                                                        </div>
+                                                        <div ng-show="cat_oferta.length > 0">
+
+                                                            <div ng-repeat="cat_o in cat_oferta" style="display:inline-flex;margin-right:3px;">
+                                                                <h3>
+                                                                    <span class="label label-info ">
+                                                                        {{cat_o.nombre_categoria}}
+
+                                                                    </span>
+
+                                                                </h3>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+
+
+
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <p class="lead text-default text-left text-muted">Descripcion de la oferta:</p>
+                                            </div>
+                                            <div class="panel-body">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">{{ver_detalle_oferta.descripcion_oferta}}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <p class="lead text-default text-left text-muted">Necesidades de la Oferta:</p>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="list-group">
+                                            <li class="list-group-item"> <h5>Habilidades</h5></li>
+                                            <li class="list-group-item" ng-init="vista_habilidades_oferta(@ViewBag.id_especificacion_oferta)">
+                                              @*  <a href="" ng-click="vista_habilidades_oferta(@ViewBag.id_especificacion_oferta)">listar habilidades</a>*@
+                                                <div ng-show="ver_hab_of">
+                                                    <img src="~/Images/indicator.white.gif" /> Cargando ...
+                                                </div>
+                                                <div ng-show="!ver_hab_of && !error_hab_of && habilidad_oferta <= 0">
+                                                    No se Encontraron resultados ...
+
+                                                </div>
+                                                <div ng-show="!ver_hab_of && error_hab_of ">
+                                                    error viejo no cargo ...
+
+                                                </div>
+                                                <div ng-show="habilidad_oferta.length > 0">
+                                             
+                                                    <p></p>
+
+                                                    <div ng-repeat="hab_o in habilidad_oferta">
+                                                        <h3>
+                                                            <span class="label label-info">
+                                                                {{hab_o.nombre_habilidad}} {{hab_o.nombre_grado_habilidad}} ({{hab_o.nombre_nivel_importancia}})
+
+                                                            </span>
+
+                                                        </h3>
+                                                    </div>
+                                                </div>
+
+</li>
+                                            <li class="list-group-item"> <h5>idiomas</h5></li>
+                                            <li class="list-group-item" ng-init="vista_idiomas_oferta(@ViewBag.id_especificacion_oferta)">
+                                             @*  <a href="" ng-click="vista_idiomas_oferta(@ViewBag.id_especificacion_oferta)">listar idiomas</a>*@ 
+                                                <div ng-show="ver_idioma_of">
+                                                    <img src="~/Images/indicator.white.gif" /> Cargando ...
+                                                </div>
+                                                <div ng-show="!ver_idioma_of && !error_idioma_of && idiomas_oferta <= 0">
+                                                    No se Encontraron resultados ...
+
+                                                </div>
+                                                <div ng-show="!ver_idioma_of && error_idioma_of ">
+                                                    error viejo no cargo ...
+
+                                                </div>
+                                                <div ng-show="idiomas_oferta.length > 0">
+                                                 
+                                                    <p></p>
+
+                                                    <div ng-repeat="idioma_o in idiomas_oferta">
+                                                        <h3>
+                                                            <span class="label label-info">
+                                                                {{idioma_o.nombre_idioma}} ({{idioma_o.nombre_nivel_idioma}}) <a class="text-danger">({{idioma_o.nombre_nivel_importancia}}</a>)
+
+                                                            </span>
+
+                                                        </h3>
+                                                    </div>
+                                                </div>
+
+                                            </li>
+                                            <li class="list-group-item"> <h5>profesiones</h5></li>
+                                            <li class="list-group-item" ng-init="vista_profesiones_oferta(@ViewBag.id_especificacion_oferta)">
+                                               @*<a href="" ng-click="vista_profesiones_oferta(@ViewBag.id_especificacion_oferta)">listar profesiones</a>*@
+                                                <div ng-show="ver_prof_of">
+                                                    <img src="~/Images/indicator.white.gif" /> Cargando ...
+                                                </div>
+                                                <div ng-show="!ver_prof_of && !error_prof_of && profesiones_oferta <= 0">
+                                                    No se Encontraron resultados ...
+
+                                                </div>
+                                                <div ng-show="!ver_prof_of && error_prof_of ">
+                                                    error viejo no cargo ...
+
+                                                </div>
+                                                <div ng-show="profesiones_oferta.length > 0">
+                                                 
+                                                    <p></p>
+
+                                                    <div ng-repeat="prof_o in profesiones_oferta">
+                                                        <h3>
+                                                            <span class="label label-info">
+                                                                {{prof_o.nombre_profesion}} <a class="text-danger"> ({{prof_o.nombre_nivel_importancia}}) </a>
+
+</span>
+
+                                                        </h3>
+                                                    </div>
+                                                </div>
+
+                                            </li>
+                                            <li class="list-group-item"> <h5>Softwares</h5></li>
+<li class="list-group-item" ng-init="vista_softwares_oferta(@ViewBag.id_especificacion_oferta)">
+                                           
+                                                <div ng-show="ver_soft_of">
+                                                    <img src="~/Images/indicator.white.gif" /> Cargando ...
+                                                </div>
+                                                <div ng-show="!ver_soft_of && !error_soft_of && softwares_oferta <= 0">
+                                                    No se Encontraron resultados ...
+
+                                                </div>
+                                                <div ng-show="!ver_soft_of && error_soft_of ">
+                                                    error viejo no cargo ...
+
+                                                </div>
+                                                <div ng-show="softwares_oferta.length > 0">
+                                                   
+                                                    <p></p>
+
+                                                    <div ng-repeat="soft_o in softwares_oferta">
+                                                        <h3>
+                                                            <span class="label label-info">
+                                                                {{soft_o.nombre_software}} ({{soft_o.nombre_grado_conocimiento_software}}) <a class="text-danger"> ({{soft_o.nombre_nivel_importancia}})</a>
+
+</span>
+
+                                                        </h3>
+                                                    </div>
+                                                </div>
+
+                                            </li>
+                                          
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                       
+                    </div>
+                    <hr />
+                    <div class="row">
+@if(Session["persona_id"] != null)
+{
+    
+        {Html.RenderPartial("oferta_cuestionario/_vista_oferta_cuestionario");}
+  
+  
+}
+else
+{
+    <div class="col-md-6 col-md-offset-3">
+        <div class="well">
+            <blockquote class="lead">
+                <p>Debes iniciar sesion para poder postular</p>
+                
+            </blockquote><a  class="btn1 btn btn-block btn-success btn-lg"href="@Url.Action("index","login" , new {returnUrl="B" })" >Iniciar Sesion</a>
+        
+        </div>
+    </div>
+}             
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

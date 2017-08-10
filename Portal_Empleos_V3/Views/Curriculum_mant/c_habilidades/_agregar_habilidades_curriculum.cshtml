@@ -1,0 +1,95 @@
+﻿<md-dialog>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="lg-dialog-content">
+
+            <form name="mainForm" data-ng-submit="agregar_habilidad()" data-ng-controller="data1" ng-model="agrega_habilidad">
+                <div class="text-center well">
+                    <h1 class="text-center">Agregar Competencia</h1>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <h3>Seleccione su Competencia</h3>
+                        </li>
+                        <li class="list-group-item">
+
+
+                            <div ng-if="carga_r_h">
+                                <div layout="row" layout-sm="column" layout-align="space-around">
+                                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                </div>
+                            </div>
+                            <div ng-if="!error_r_h">
+                                error viejo no cargo ...
+
+                            </div>
+                            <div ng-show="dif_r_h">
+                                <div class="form-group" ng-init="rellenar_habilidad()">
+
+                                    <select ng-model="agrega_habilidad.id_habilidad" class="form-control input-lg" ng-options="r_h.id_habilidad as r_h.nombre_habilidad for r_h in rellenar_h" required>
+                                        <option value="">---Seleccione---</option>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </li>
+                        <li class="list-group-item">
+                            <h3>Seleccione un nivel acorde a usted</h3>
+                        </li>
+                        <li class="list-group-item">
+
+                            <div ng-if="carga_r_gh">
+                                <div layout="row" layout-sm="column" layout-align="space-around">
+                                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                </div>
+                            </div>
+                            <div ng-if="!error_r_gh">
+                                error viejo no cargo ...
+
+                            </div>
+                            <div ng-show="dif_r_gh">
+                                <div class="form-group" ng-init="rellenar_grado_habilidad()">
+
+                                    <select ng-model="agrega_habilidad.id_grado_habilidad" class="form-control input-lg" ng-options="r_ha.id_grado_habilidad as r_ha.nombre_grado_habilidad for r_ha in rellenar_grado_h" required>
+                                        <option value="">---Seleccione---</option>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-block btn-info btn-lg">Agregar</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-12">
+
+
+
+                                    <div class="form-group ">
+
+
+                                        <a href="" class="btn  btn-block btn-danger btn-lg" ng-click="closeDialog()">Cancelar</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+    </md-dialog-content>
+</md-dialog>

@@ -1,0 +1,115 @@
+﻿<md-dialog>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="lg-dialog-content">
+            <div class="well">
+                <h1 class="text-center"> EDITAR EXPERIENCIA LABORAL</h1>
+                <hr>
+                <form name="mainForm" data-ng-submit="editar_experiencia_laboral(@ViewBag.id_experiencia_laboral)" data-ng-controller="data1" ng-init="detalle_experiencia_laboral(@ViewBag.id_experiencia_laboral)">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label class="control-label" for="exampleInputEmail1">Cargo</label>
+                                <input class="form-control input-lg" id="nombre_experiencia_laboral_curriculum" name="nombre_experiencia_laboral_curriculum" placeholder="EJ:Juan"
+                                       type="text" ng-model="update_nombre_experiencia_laboral" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="exampleInputPassword1">Empresa</label>
+                                <input class="form-control input-lg" id="empresa_experiencia_laboral" name="empresa_experiencia_laboral_curriculum"
+                                       placeholder="EJ: Ascencio" type="text" ng-model="update_empresa_experiencia_laboral" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="exampleInputPassword1">Fecha inicio</label>
+
+                             
+                                  <div flex-gt-xs>
+                                  
+                                    <md-datepicker ng-model="update_ano_inicio_experiencia_laboral" md-placeholder="Ingrese fecha de inicio"
+                                                   md-min-date="ctrl.minDate" max="{{currentdate}}"></md-datepicker>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+
+                            <div ng-if="carga_r_cex">
+                                <div layout="row" layout-sm="column" layout-align="space-around">
+                                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                </div>
+                            </div>
+                            <div ng-if="!error_r_cex">
+                                error viejo no cargo ...
+
+                            </div>
+                            <div ng-show="dif_r_cex">
+
+                                <div class="form-group" ng-init="rellenar_cargo_experiencias()">
+                                    <label class="control-label" for="exampleInputPassword1">Tipo de cargo</label>
+                                    <select ng-model="update_id_cargo_experiencia_laboral" class="form-control input-lg" ng-options="r_c_exp.id_cargo_experiencia_laboral as r_c_exp.nombre_cargo_experiencia_laboral for r_c_exp in rellenar_cargo_exp" required>
+                                        <option value="">---Seleccione---</option>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                </div>
+                                <div ng-if="carga_r_aex">
+                                    <div layout="row" layout-sm="column" layout-align="space-around">
+                                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                    </div>
+                                </div>
+                                <div ng-if="!error_r_aex">
+                                    error viejo no cargo ...
+
+                                </div>
+                                <div ng-show="dif_r_aex">
+                                    <div class="form-group" ng-init="rellenar_area_experiencias()">
+                                        <label class="control-label" for="exampleInputPassword1">Area de Trabajo</label>
+                                        <select ng-model="update_id_area_experiencia_laboral" class="form-control input-lg" ng-options="r_a_exp.id_area_experiencia_laboral as r_a_exp.nombre_area_experiencia_laboral for r_a_exp in rellenar_area_exp" required>
+                                            <option value="">---Seleccione---</option>
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="exampleInputPassword1">Fecha termino</label>
+
+                                    <input type="datetime" class="form-control input-lg" id="exampleInput" name="input" ng-model="update_ano_termino_experiencia_laboral"
+                                           placeholder="yyyy-MM-dd" min="1950-01-01" max="{{currentdate}}" required />
+                                </div>
+                            </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label" for="exampleInputEmail1">Ingrese su Presentacion</label>
+                                <textarea name="detalle_experiencia_laboral" class="form-control" id="detalle_experiencia_laboral_curriculum" ng-model="update_detalle_experiencia_laboral"
+                                          rows="5" placeholder="EJ: control de los sistemas informaticos" required></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="well">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-block btn-lg btn-info">
+                                            Agregar experiencia laboral
+                                        </button>
+
+
+                                    </div>
+                                    <div class="form-group ">
+                                      
+                                            <a href="" class="btn  btn-block btn-danger btn-lg" ng-click="closeDialog()">Cancelar</a>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </md-dialog-content>
+</md-dialog>

@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "Mi Cuenta";
+}
+
+
+
+
+    <div class="container">
+      
+        
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+       
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="well">
+
+                            <h1 class="text-center">
+                                Mi Cuenta
+
+                            </h1>
+                        
+                            <div class="panel panel-info" ng-controller="micuenta">
+                                <div class="panel-body" ng-init="datos_persona()">
+
+                                    <div class="row">
+                                        <div class="col-md-6 text-center">
+                                            <div class="text-left well">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="exampleInputEmail1">Nombre Completo</label>
+                                                    <input class="form-control" id="exampleInputEmail1" disabled="disabled" value="{{datos_per.nombre_persona}} {{datos_per.apellido_paterno_persona}} {{datos_per.apellido_materno_persona}}" />
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="exampleInputPassword1">Rut</label>
+                                                    <input class="form-control" id="exampleInputPassword1"
+                                                           type="text" disabled="disabled" value="{{datos_per.identificacion_persona}} - {{datos_per.digito_verificador_identificacion_persona}}" />
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="exampleInputPassword1">Correo Electronico</label>
+                                                    <input class="form-control" id="exampleInputPassword1" type="text"
+                                                           disabled="disabled" value="{{datos_per.correo_electronico_persona}}" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="exampleInputPassword1">fecha de nacimiento</label>
+                                                    <input class="form-control" id="exampleInputPassword1" type="text"
+                                                           disabled="disabled" value="{{datos_per.fecha_nacimiento_persona.replace('/Date(','').replace(')/','') | date:'dd-MM-yyyy'}}" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="exampleInputPassword1">Sexo</label>
+                                                    <input class="form-control" id="exampleInputPassword1" type="text"
+                                                           disabled="disabled" value="{{datos_per.nombre_tipo_persona}}" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="exampleInputPassword1">Discapacidad</label>
+                                                    <input class="form-control" id="exampleInputPassword1" type="text"
+                                                           disabled="disabled" value="{{datos_per.nombre_discapacidad_persona}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <div class="text-left well">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="exampleInputEmail1">Region</label>
+                                                    <input class="form-control" id="exampleInputEmail1"
+                                                           type="text" disabled="disabled" value="{{datos_per.nombre_region}}" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="exampleInputPassword1">Ciudad</label>
+                                                    <input class="form-control" id="exampleInputPassword1"
+                                                           type="text" disabled="disabled" value="{{datos_per.nombre_ciudad}}" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="exampleInputPassword1">Comuna</label>
+                                                    <input class="form-control" id="exampleInputPassword1"
+                                                           type="text" disabled="disabled" value="{{datos_per.nombre_comuna}}" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="exampleInputPassword1">Direccion</label>
+                                                    <input class="form-control" id="exampleInputPassword1" type="text"
+                                                           disabled="disabled" value="{{datos_per.direccion_curriculum}}" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="exampleInputPassword1">Telefono Contacto</label>
+                                                    <input class="form-control" id="exampleInputPassword1" type="text"
+                                                           disabled="disabled" value="{{datos_per.telefono_curriculum_1}}" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="exampleInputPassword1">Telefono respaldo(opcional)</label>
+                                                    <input class="form-control" id="exampleInputPassword1" type="text"
+                                                           disabled="disabled" value="{{datos_per.telefono_curriculum_2}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div ng-controller="data1">
+                                    <div class="text-center well">
+                                        <h2 class="text-center">Cambiar contraseña</h2>
+
+                                        <a class="btn btn-lg btn-info" ng-click="abremodal('../cuenta/cuenta_cambio_contraseña/' , datos_per.id_persona)">Deseo Cambiar mi contraseña</a>
+                                      
+</div>
+                                    <div class="text-center well">
+                                        <h2 class="text-center">Desactivar mi cuenta</h2>
+                                       
+                                            <a class="btn btn-lg btn-info" ng-click="abremodal('../cuenta/cuenta_desactiva_cuenta/' ,  datos_per.id_persona)">Deseo Desactivar mi cuenta</a>
+
+</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+

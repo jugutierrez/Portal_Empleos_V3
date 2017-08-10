@@ -1,0 +1,108 @@
+﻿<md-dialog>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <form name="mainForm" data-ng-submit="editar_experiencia_laboral()" data-ng-controller="data1" ng-model="edita_experiencia_laboral" novalidate>
+                <div class="well">
+                    <h1 class="text-center"> EDITAR EXPERIENCIA LABORAL @ViewBag.id_experiencia_laboral</h1>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label class="control-label" for="exampleInputEmail1">Cargo</label>
+                                <input class="form-control input-lg" id="nombre_experiencia_laboral_curriculum" name="nombre_experiencia_laboral_curriculum" placeholder="EJ:Juan"
+                                       type="text" ng-model="edita_experiencia_laboral.nombre_experiencia_laboral" ng-init="edita_experiencia_laboral.nombre_experiencia_laboral = exp_c.nombre_experiencia_laboral" value="{{exp_c.nombre_experiencia_laboral}}">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="exampleInputPassword1">Empresa</label>
+                                <input class="form-control input-lg" id="empresa_experiencia_laboral" name="empresa_experiencia_laboral_curriculum"
+                                       placeholder="EJ: Empresas Delorto" type="text" ng-model="edita_experiencia_laboral.empresa_experiencia_laboral" ng-init="edita_experiencia_laboral.empresa_experiencia_laboral = exp_c.empresa_experiencia_laboral" value="{{exp_c.empresa_experiencia_laboral}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="exampleInputPassword1">Fecha Inicio</label>
+
+                                <input type="date" class="form-control input-lg" id="exampleInput" name="input" ng-model="edita_experiencia_laboral.ano_inicio_experiencia_laboral" ng-init="edita_experiencia_laboral.ano_inicio_experiencia_laboral = exp_c.ano_inicio_experiencia_laboral.replace('/Date(','').replace(')/','') | date:'yyyy-MM-dd'" value="{{exp_c.ano_inicio_experiencia_laboral.replace('/Date(','').replace(')/','') | date:'yyyy-MM-dd'}}"
+                                       placeholder="yyyy-MM-dd" min="1950-01-01" max="{{currentdate}}" required />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="form-group" ng-init="rellenar_cargo_experiencias()">
+
+                                <select ng-model="edita_experiencia_laboral.id_cargo_experiencia_laboral" ng-options="r_c_exp.id_cargo_experiencia_laboral as r_c_exp.nombre_cargo_experiencia_laboral for r_c_exp in rellenar_cargo_exp">
+                                    <option value="">---Seleccione---</option>
+                                    <option value=""></option>
+                                </select>
+
+                                <label class="control-label" for="exampleInputPassword1">Tipo de cargo</label>
+                                <select name="cargo_experiencias_s" id="cargo_experiencias_s" class="form-control input-lg">
+                                    <option value="">---Seleccione---</option> <!-- not selected / blank option -->
+                                    <option ng-repeat="r_c_exp in rellenar_cargo_exp" ng-selected="r_c_exp.nombre_cargo_experiencia_laboral == exp_c.nombre_cargo_experiencia_laboral" ng-value="{{r_c_exp.id_cargo_experiencia_laboral}}">{{r_c_exp.nombre_cargo_experiencia_laboral}}</option> <!-- interpolation -->
+
+                                </select>
+
+                            </div>
+                            <div class="form-group" ng-init="rellenar_area_experiencias()">
+                                <label class="control-label" for="exampleInputPassword1">Area de Trabajo</label>
+                                @* <a href="" ng-click="rellenar_habilidad()">habilidades</a>*@
+
+
+
+                                <select name="area_experiencias_s" id="area_experiencias_s" class="form-control input-lg">
+                                    <option value="">---Seleccione---</option> <!-- not selected / blank option -->
+
+                                    <option ng-repeat="r_a_exp in rellenar_area_exp" value="{{r_a_exp.id_area_experiencia_laboral}}" ng-selected="r_a_exp.nombre_area_experiencia_laboral == exp_c.nombre_area_experiencia_laboral">{{r_a_exp.nombre_area_experiencia_laboral}} </option> <!-- interpolation -->
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="exampleInputPassword1">Fecha Termino</label>
+
+                                <input type="date" class="form-control input-lg" id="exampleInput" name="input" value="{{exp_c.ano_termino_experiencia_laboral.replace('/Date(','').replace(')/','') | date:'yyyy-MM-dd'}}"
+                                       placeholder="yyyy-MM-dd" min="1950-01-01" max="{{currentdate}}" required />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label" for="exampleInputEmail1">Ingrese su Presentacion</label>
+                                <textarea name="detalle_experiencia_laboral" class="form-control" id="detalle_experiencia_laboral_curriculum"
+                                          rows="5" placeholder="EJ: control de los sistemas informaticos">
+                                    {{exp_c.detalle_experiencia_laboral}}
+                                </textarea>
+                            </div>
+                            <div class="row">
+                                <div class="well">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-block btn-lg btn-info">
+                                            actualizar experiencia laboral
+                                        </button>
+
+
+
+                                    </div>
+                                    <div class="form-group ">
+                                        <div ng-controller="data1">
+
+                                            <a href="" class="btn  btn-block btn-danger btn-lg" ng-click="closeDialog()">Cancelar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+              </div>
+    </md-dialog-content>
+</md-dialog>

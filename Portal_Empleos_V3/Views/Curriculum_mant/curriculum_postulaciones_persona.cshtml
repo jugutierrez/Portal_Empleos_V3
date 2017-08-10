@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "Mis Postulaciones";
+}
+
+<div class="container" ng-controller="postulaciones">
+    <div class="col-md-12">
+        <div class="well">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="text-center">Mis Postulaciones</h1>
+                </div>
+            </div>
+          
+     
+            <div class="row">
+                <div class="col-md-12" ng-init="rellenar_listado_postulacion()">
+                    <div ng-show="listado_postulacion.length > 0">
+                        <div ng-repeat="l_p in listado_postulacion track by $index">
+                            <div class="panel panel-primary">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item"><h3><a href="~/Ofertas_Control/vista_detalle_oferta/{{::l_p.id_oferta}}">{{::l_p.nombre_oferta}}</a></h3></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-init="rellenar_estado_postulacion()">
+                                                <div ng-show="r_e_post.length > 0">
+                                                    <div ng-repeat="r_e_pos in r_e_post track by $index">
+                                                        <div class="col-md-3" ng-hide="r_e_pos.id_estado_postulacion != l_p.id_estado_postulacion">
+                                                            <ul class="list-group text-center">
+                                                                <li class="list-group-item list-group-item-info">
+                                                                    <i class="fa fa-2x fa-arrow-circle-o-down fa-fw text-muted"></i>
+                                                                </li>
+                                                                <li class="list-group-item"><h3>{{::r_e_pos.nombre_estado_postulacion}}</h3></li>
+                                                            </ul>
+                                                        </div>
+                                                             <div class="col-md-3" ng-hide="r_e_pos.id_estado_postulacion == l_p.id_estado_postulacion">
+                                                    <ul class="list-group text-center">
+                                                        <li class="list-group-item list-group-item-warning">
+                                                            <i class="fa fa-2x fa-arrow-circle-o-down fa-fw text-info"></i>
+                                                        </li>
+                                                        <li class="list-group-item"><h3>{{::r_e_pos.nombre_estado_postulacion}}</h3></li>
+                                                    </ul>
+                                                </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item">Fecha Postulacion: {{::l_p.fecha_postulacion.replace('/Date(','').replace(')/','') | date:'dd-MM-yyyy'}}</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item">
+                                                            <a class="btn btn-block btn-info btn-lg" href="~/Ofertas_Control/vista_detalle_oferta/{{::l_p.id_oferta}}">Ver detalle de la oferta</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <ul class="list-group" style="margin: 50 0 50 0">
+                                                <li class="list-group-item">Cantidad de postulados</li>
+                                                <li class="list-group-item">
+                                                    <h1 class="text-center text-info">
+                                                        <span class="label label-info">{{::l_p.cantidad_postulantes}}</span>
+                                                    </h1>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                    </div>
+                </div>
+    </div>
+</div>
+
+
+

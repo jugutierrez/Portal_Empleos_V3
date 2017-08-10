@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Mi Curriculum";
+}
+
+    <div class="container" ng-controller="HomeCtrl">
+        <div class="row">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="well">
+                        <h1>TU CURRICULUM</h1>
+                        
+                        <ul class="list-group ">
+                            <li class="list-group-item">
+                                <ol class="list-inline clearfix text-center" style="display:table">
+                                    <li style="display:table-cell;vertical-align:middle">Fecha ultima actualizacion : </li>
+                          
+                                    <li style="display:table-cell;vertical-align:middle">Descarga una copia de tu Curriculum <i class="fa fa-arrow-right fa-border fa-lg text-info"></i></li >
+                                    <li style="display:table-cell;vertical-align:middle"><a target="_blank" href="@Url.Action("descarga_curriculum1")" class="btn btn-info btn-lg">Descargar<i class="fa fa-fw fa-download"></i></a></li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+              
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        
+    <div class="col-md-12">
+
+        <div ng-init="foto_persona()">
+            @{Html.RenderPartial("c_foto/_vista_foto_curriculum");}
+        </div>
+        </div>
+    <div class="col-md-12">
+        <div ng-init="profesion_curriculum()">
+            @{Html.RenderPartial("c_profesiones/_vista_profesiones_curriculum");}
+        </div>
+        </div>
+                        <div class="col-md-12">
+
+                            <div ng-init="documentos_curriculum()">
+                                @{Html.RenderPartial("c_documentos/_vista_documentos_curriculum");}
+                            </div>
+                            </div>
+                        <div class="col-md-12">
+                            <div ng-init="softwares_curriculum()">
+                                @{Html.RenderPartial("c_softwares/_vista_softwares_curriculum");}
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div ng-init="habilidades_curriculum()">
+                                @{Html.RenderPartial("c_habilidades/_vista_habilidades_curriculum");}
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div ng-init="idiomas_curriculum()">
+                                @{Html.RenderPartial("c_idiomas/_vista_idiomas_curriculum");}
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-12">
+                                        <div ng-init="datos_persona()">
+                                            @{Html.RenderPartial("c_datos_persona/_vista_datos_persona_curriculum");}
+                                        </div>
+                                    </div>
+                                <div class="col-md-12">
+                                    <div ng-init="descripcion_curriculum()">
+                                        @{Html.RenderPartial("c_descripcion/_vista_descripcion_curriculum");}
+                                    </div>
+                                    </div>
+                                <div class="col-md-12">
+                                    <div ng-init="experiencias_laborales_curriculum()">
+                                        @{Html.RenderPartial("c_experiencia_laboral/_vista_experiencia_laboral_curriculum");}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div ng-init="estudios_curriculum()">
+                                        @{Html.RenderPartial("c_estudios/_vista_estudios_curriculum");}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div ng-init="capacitaciones_curriculum()">
+                                        @{Html.RenderPartial("c_capacitaciones/_vista_capacitaciones_curriculum");}
+                                    </div>
+                                </div>
+                            
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>

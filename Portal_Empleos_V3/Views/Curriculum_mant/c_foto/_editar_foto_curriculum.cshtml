@@ -1,0 +1,59 @@
+﻿
+<md-dialog>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+
+        </div>
+    </md-toolbar>
+
+ 
+
+
+    <md-dialog-content>
+        <form name="mainForm" data-ng-submit="actualizar_foto(@ViewBag.id)" ng-model="actualiza_fotos" data-ng-controller="data1" enctype="multipart/form-data">
+            <div class="lg-dialog-content">
+                <div class="text-center well">
+                    <h1 class="text-center">Tu Foto Perfil</h1>
+                    <ul class="list-group">
+
+                        <li class="list-group-item">
+                            <img src="http://k15.kn3.net/05DC618D2.jpg"
+                                 class="center-block img-responsive img-thumbnail" width="300" height="300" name="preview" id="preview">
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-12">
+
+
+                                    <input type="file" accept="image/x-png, image/gif, image/jpeg" onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])" value="Seleccione foto..." file-model="actualiza_fotos.fotos" required />
+
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="form-group ">
+                                        <button type="submit" class="btn btn-block btn-info btn-lg">Actualizar Foto Perfil</button>
+                                    </div>
+                                    <div class="form-group ">
+
+
+                                        <a href="" class="btn  btn-block btn-danger btn-lg" ng-click="closeDialog()">Cancelar</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        
+        </form>
+    </md-dialog-content>
+
+
+</md-dialog>

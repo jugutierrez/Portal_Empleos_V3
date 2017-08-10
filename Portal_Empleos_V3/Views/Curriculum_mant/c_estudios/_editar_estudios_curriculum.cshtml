@@ -1,0 +1,134 @@
+﻿<md-dialog>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="lg-dialog-content">
+            <form name="mainForm" data-ng-submit="editar_estudios(@ViewBag.id_estudio)" data-ng-controller="data1" ng-init="detalle_estudios(@ViewBag.id_estudio)">
+                <div class="well">
+                    <h1 class="text-center"> Editar Estudio </h1>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                          
+                            <div ng-if="carga_r_tes">
+                                <div layout="row" layout-sm="column" layout-align="space-around">
+                                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                </div>
+                            </div>
+                            <div ng-if="!error_r_tes">
+                                error viejo no cargo ...
+
+                            </div>
+                            <div ng-show="dif_r_tes">
+
+                                <div class="form-group" ng-init="rellenar_tipo_estudios()">
+                                    <label class="control-label" for="exampleInputPassword1">Curso de estudio</label>
+                                    <select ng-model="update_id_tipo_estudio" class="form-control input-lg" ng-options="r_t_es.id_tipo_estudio as r_t_es.nombre_tipo_estudio for r_t_es in rellenar_t_es" required>
+                                        <option value="">---Seleccione---</option>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                </div>
+                            <div ng-if="carga_r_ees">
+                                <div layout="row" layout-sm="column" layout-align="space-around">
+                                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                </div>
+                            </div>
+                            <div ng-if="!error_r_ees">
+                                error viejo no cargo ...
+
+                            </div>
+                            <div ng-show="dif_r_ees">
+
+                                <div class="form-group" ng-init="rellenar_estudios()">
+                                    <label class="control-label" for="exampleInputPassword1">Nombre de estudio</label>
+                                    <select ng-model="update_id_estudio" class="form-control input-lg" ng-options="r_es.id_estudio as r_es.nombre_estudio for r_es in rellenar_es" required>
+                                        <option value="">---Seleccione---</option>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label" for="exampleInputPassword1">Fecha Inicio</label>
+
+                                    <input type="datetime" class="form-control input-lg" id="exampleInput" name="input" ng-model="update_ano_inicio_estudio_curriculum"
+                                           placeholder="yyyy-MM-dd" min="1950-01-01" max="{{currentdate}}" required />
+                                </div>
+                            </div>
+                        <div class="col-md-6">
+                            <div ng-if="carga_r_in">
+                                <div layout="row" layout-sm="column" layout-align="space-around">
+                                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                </div>
+                            </div>
+                            <div ng-if="!error_r_in">
+                                error viejo no cargo ...
+
+                            </div>
+                            <div ng-show="dif_r_in">
+
+                                <div class="form-group" ng-init="rellenar_instituciones()">
+                                    <label class="control-label" for="exampleInputPassword1">Institucion</label>
+                                    <select ng-model="update_id_institucion" class="form-control input-lg" ng-options="r_in.id_institucion as r_in.nombre_institucion for r_in in rellenar_insti" required>
+                                        <option value="">---Seleccione---</option>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                </div>
+                            <div ng-if="carga_r_ees">
+                                <div layout="row" layout-sm="column" layout-align="space-around">
+                                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                </div>
+                            </div>
+                            <div ng-if="!error_r_ees">
+                                error viejo no cargo ...
+
+                            </div>
+                            <div ng-show="dif_r_ees">
+
+                                <div class="form-group" ng-init="rellenar_estado_estudios()">
+                                    <label class="control-label" for="exampleInputPassword1">Estado del estudio</label>
+                                    <select ng-model="update_id_estado_estudio" class="form-control input-lg" ng-options="r_e_es.id_estado_estudio as r_e_es.nombre_estado_estudio for r_e_es in rellenar_e_es" required>
+                                        <option value="">---Seleccione---</option>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="exampleInputPassword1">Fecha termino</label>
+
+                                    <input type="datetime" class="form-control input-lg" id="exampleInput" name="input" ng-model="update_ano_termino_estudio_curriculum"
+                                           placeholder="yyyy-MM-dd" min="1950-01-01" max="{{currentdate}}" required />
+                                </div>
+                            </div>
+
+
+                    <div class="col-lg-12">
+                        <div class="well">
+
+                            <div class="form-group ">
+                                <button type="submit" class="btn btn-block btn-lg btn-info">
+                                    Actualizar Estudio
+                                </button>
+                            </div>
+                            <div class="form-group ">
+                                <div ng-controller="data1">
+
+                                    <a href="" class="btn  btn-block btn-danger btn-lg" ng-click="closeDialog()">Cancelar</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </md-dialog-content>
+</md-dialog>

@@ -1,0 +1,95 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading clearfix">
+
+        <div class="pull-right">
+            <div ng-controller="data1">
+               
+               
+                <a href="" ng-click="abremodal('../Curriculum_mant/agregar_vista_estudios_curriculum' ,'')" class="btn btn-default "><i class="fa fa-fw fa-lg fa-plus-circle text-warning"></i>Agregar</a>
+            </div>
+        </div>
+        <div class="pull-left">
+            <h3>Mis Estudios</h3>
+        </div>
+    </div>
+
+    <div class="panel-body" style="word-break: break-word">
+        <div class="col-md-12">
+            
+            <div ng-show="ver_est">
+                <div layout="row" layout-sm="column" layout-align="space-around">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </div>
+            <div ng-show="!ver_est && !error_est && est_curriculum <= 0">
+                No se Encontraron resultados ...
+
+            </div>
+            <div ng-show="!ver_est && error_est">
+                error viejo no cargo ...
+
+            </div>
+            <div ng-show="est_curriculum.length > 0">
+                <div ng-repeat="est_c in est_curriculum track by $index">
+
+                  
+                    <div class="well">
+                        <div class="row" style="border:dashed; margin-bottom:5px;">
+                            <div class="col-xs-4 text-center">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4 class="text-center">Duracion:</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4 class="text-center">Desde:</h4>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <h4 class="text-info text-center">{{est_c.ano_inicio_estudio_curriculum.replace('/Date(','').replace(')/','') | date:'dd-MM-yyyy'}}</h4>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4 class="text-center">Hasta:</h4>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <h4 class="text-info text-center">{{est_c.ano_termino_estudio_curriculum.replace('/Date(','').replace(')/','') | date:'dd-MM-yyyy'}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="row">
+                                    <div class="col-xs-8">
+                                        <h4>  Titulo: </h4>  <h4 class="text-info"> {{est_c.nombre_estudio}}</h4>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="text-center well-sm">
+                                            <div ng-controller="data1">
+           
+                                                <a href="" ng-click="abremodal('../Curriculum_mant/editar_vista_estudios_curriculum/' , est_c.id_estudio_curriculum)" class="btn btn-block btn-info btn-sm"><i class="fa fa-star fa-fw"></i>Editar</a>
+                                                <a href="" ng-click="abremodal('../Curriculum_mant/eliminar_vista_estudios_curriculum/' , est_c.id_estudio_curriculum)" class="btn btn-block btn-info btn-sm"><i class="fa fa-star fa-fw"></i>Eliminar</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>  Institucion: </h4>     <h4 class="text-info"> {{est_c.nombre_institucion}}</h4>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h4>  Tipo de Estudio: </h4>     <h4 class="text-info"> {{est_c.nombre_tipo_estudio}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>   
+        </div>
+    </div>
+</div>

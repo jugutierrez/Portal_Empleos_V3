@@ -1,0 +1,26 @@
+﻿<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <form name="mainForm" data-ng-submit="actualizar_pass()" data-ng-controller="data1" ng-model="actualiza_pass" novalidate>
+            <div class="well">
+                <h2 class="text-center">Cambio de Contraseña @ViewBag.id_persona</h2>
+                <p></p>
+                <ul class="list-group">
+
+                    <li class="list-group-item">
+                        <div class="form-group">
+                            <label class="control-label" for="exampleInputEmail1">Tu nueva clave</label>
+                            <input class="form-control" id="clave_usuario" name="clave_usuario" placeholder="Ingresa tu nueva clave" type="password" ng-model="actualiza_pass.clave_usuario_1">
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-group">
+                            <label class="control-label" for="exampleInputEmail1">Reingresa tu nueva clave</label>
+                            <input class="form-control" id="clave_usuario_repite" name="clave_usuario_repite" ng-model="actualiza_pass.clave_usuario_2" placeholder="Repite tu nueva clave" type="password">
+                        </div>
+                    </li>
+                </ul>
+                <input type="submit" value="Actualizar" class="btn btn-block btn-lg btn-info" />
+            </div>
+            </form>
+</div>
+</div>

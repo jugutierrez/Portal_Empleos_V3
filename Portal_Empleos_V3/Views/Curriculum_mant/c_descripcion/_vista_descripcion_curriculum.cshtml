@@ -1,0 +1,50 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading clearfix">
+
+        <div class="pull-right">
+            
+            <div ng-controller="data1">
+                <a href="" ng-click="abremodal('../Curriculum_mant/editar_vista_descripcion_curriculum' ,'')" class="btn btn-default "><i class="fa fa-fw fa-lg fa-plus-circle text-warning"></i>Editar</a>
+            </div>
+            </div>
+        <div class="pull-left">
+            <h3> Mi Presentación</h3>
+        </div>
+    </div>
+    <div class="panel-body" style="word-break: break-word">
+        <div class="col-md-12">
+     
+          
+            <div ng-if="carga_desc">
+                <div layout="row" layout-sm="column" layout-align="space-around">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </div>
+            <div ng-if="!carga_desc &&  dif_desc && desc_curriculum === ''">
+                No se Encontraron resultados ...
+
+            </div>
+            <div ng-if="error_desc">
+                error viejo no cargo ...
+
+            </div>
+
+            <div ng-show="desc_curriculum">
+                <md-input-container class="md-block">
+
+                    <textarea ng-model="desc_curriculum" md-maxlength="500" rows="5" disabled></textarea>
+                   
+
+
+                </md-input-container>
+
+
+
+
+
+            </div>
+               
+               
+            </div>
+    </div>
+</div>

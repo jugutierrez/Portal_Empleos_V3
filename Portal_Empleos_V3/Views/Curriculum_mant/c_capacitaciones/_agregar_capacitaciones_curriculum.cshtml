@@ -1,0 +1,143 @@
+﻿
+
+<md-dialog>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+
+                    <div class="lg-dialog-content">
+                        <div class="well">
+                            <h1 class="text-center">Capacitaciones</h1>
+                            <hr>
+                            <form name="mainForm" data-ng-submit="agregar_capacitacion()" data-ng-controller="data1" ng-model="agrega_capacitacion" ng-cloak>
+                                <div class="row">
+                                    <div class="col-xs-6">
+
+                                        <div ng-if="carga_r_c">
+                                            <div layout="row" layout-sm="column" layout-align="space-around">
+                                                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                            </div>
+                                        </div>
+                                        <div ng-if="!error_r_c">
+                                            error viejo no cargo ...
+
+                                        </div>
+                                        <div ng-show="dif_r_c">
+
+                                            <div class="form-group" ng-init="rellenar_capacitacion()">
+                                                <label class="control-label" for="exampleInputPassword1">Tipo Capacitacion</label>
+                                                <select ng-model="agrega_capacitacion.id_capacitacion" class="form-control input-lg" ng-options="r_t_c.id_capacitacion as r_t_c.nombre_capacitacion for r_t_c in rellenar_capa" required>
+                                                    <option value="">---Seleccione---</option>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+
+                                           </div>
+
+                                        <div ng-if="carga_r_ec">
+                                            <div layout="row" layout-sm="column" layout-align="space-around">
+                                                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                            </div>
+                                        </div>
+                                        <div ng-if="!error_r_ec">
+                                            error viejo no cargo ...
+
+                                        </div>
+                                        <div ng-show="dif_r_ec">
+                                            <div class="form-group" ng-init="rellenar_estado_capacitacion()">
+                                                <label class="control-label" for="exampleInputPassword1">Situacion</label>
+                                                <select ng-model="agrega_capacitacion.id_estado_capacitacion" class="form-control input-lg" ng-options="r_e_c.id_estado_capacitacion as r_e_c.nombre_estado_capacitacion for r_e_c in rellenar_e_capa" required>
+                                                    <option value="">---Seleccione---</option>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label" for="exampleInputPassword1"> Fecha inicio:</label>
+
+                                                <input type="date" class="form-control input-lg" id="exampleInput" name="input" ng-model="agrega_capacitacion.ano_inicio_capacitacion_curriculum"
+                                                       placeholder="yyyy-MM-dd" min="1950-01-01" max="{{currentdate}}" required />
+                                            </div>
+                                  
+                                        </div>
+
+                                    <div class="col-xs-6">
+
+                                        <div ng-if="carga_r_in">
+                                            <div layout="row" layout-sm="column" layout-align="space-around">
+                                                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                            </div>
+                                        </div>
+                                        <div ng-if="!error_r_in">
+                                            error viejo no cargo ...
+
+                                        </div>
+                                        <div ng-show="dif_r_in">
+                                            <div class="form-group" ng-init="rellenar_instituciones()">
+                                                <label class="control-label" for="exampleInputPassword1">Institucion</label>
+                                                <select ng-model="agrega_capacitacion.id_institucion" class="form-control input-lg" ng-options="r_in.id_institucion as r_in.nombre_institucion for r_in in rellenar_insti" required>
+                                                    <option value="">---Seleccione---</option>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="exampleInputPassword1">Horas Capacitacion:</label>
+                                                <input class="form-control input-lg" id="direccion_curriculum" name="direccion_curriculum" ng-model="agrega_capacitacion.horas_capacitacion"
+                                                       placeholder="EJ: 20" type="text" value="" onkeypress="return soloNumeros(event)" maxlength="4" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label" for="exampleInputPassword1"> Fecha termino:</label>
+
+                                                <input type="date" class="form-control input-lg" id="exampleInput" name="input" ng-model="agrega_capacitacion.ano_termino_capacitacion_curriculum"
+                                                       placeholder="yyyy-MM-dd" min="1950-01-01" max="{{currentdate}}" required />
+                                            </div>
+                                        </div>
+
+
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="exampleInputEmail1">Descripcion de la capacitacion</label>
+                                            <textarea name="detalle_experiencia_laboral" class="form-control" id="detalle_experiencia_laboral_curriculum" ng-model="agrega_capacitacion.descripcion_capacitacion"
+                                                      rows="5" placeholder="EJ: control de los sistemas informaticos" required></textarea>
+                                        </div>
+
+
+
+
+
+                                        <div class="well">
+                                            <div class="form-group ">
+                                                <button type="submit" class="btn btn-block btn-lg btn-info">
+                                                    Agregar Capacitacion
+                                                </button>
+
+
+
+                                            </div>
+                                            <div class="form-group ">
+
+
+                                                <a href="" class="btn  btn-block btn-danger btn-lg" ng-click="closeDialog()">Cancelar</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+       
+         
+    </md-dialog-content>
+
+ 
+
+</md-dialog>

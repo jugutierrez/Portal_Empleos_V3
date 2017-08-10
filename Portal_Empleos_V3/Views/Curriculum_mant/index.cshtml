@@ -1,0 +1,193 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+<div class="container" ng-controller="inicio_portal">
+
+        <div class="row" ng-init="p_i()" ng-controller="HomeCtrl">
+            <div class="col-md-12">
+              
+                    <h1 class="text-center">Inicio</h1>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-5">
+                            
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <h3 class="text-muted">Mi Perfil</h3>
+                                            </div>
+                                            <div class="panel-body" ng-controller="HomeCtrl">
+
+                                                            <div class="row" ng-init="datos_persona()" >
+                                                                <div class="col-md-5" ng-init="foto_persona()">
+                                                                    <div ng-if="ver_foto" >
+                                                                        <div layout="row" layout-sm="column" layout-align="space-around">
+                                                                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div ng-if="!ver_foto && error_foto && foto_per === undefined">
+                                                                        No se Encontraron resultados ...
+
+
+                                                                    </div>
+                                                                    <div ng-if="!error_foto">
+                                                                        error viejo no cargo ...
+
+                                                                    </div>
+
+                                                                    <div ng-if="foto_per">
+
+                                                                        <img data-ng-src="data:image/png;base64,{{::foto_per.foto_curriculum}}" data-err-src="http://k15.kn3.net/05DC618D2.jpg" class="center-block img-responsive img-thumbnail" />
+
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-7">
+                                                                    
+                                                                        <div ng-if="load_datos">
+                                                                            <div layout="row" layout-sm="column" layout-align="space-around">
+                                                                                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div ng-if="!load_datos &&  error_datos && datos_per === undefined">
+                                                                            No se Encontraron resultados ...
+
+                                                                        </div>
+                                                                        <div ng-if="!error_datos">
+                                                                            error viejo no cargo ...
+
+                                                                        </div>
+
+                                                                        <div ng-if="datos_per">
+                                                                            <ul class="list-group">
+                                                                                <li class="list-group-item"> {{datos_per.nombre_persona}} {{::datos_per.apellido_paterno_persona}} {{::datos_per.apellido_materno_persona}}</li>
+                                                                                <li class="list-group-item">{{::datos_per.correo_electronico_persona}}</li>
+                                                                                <li class="list-group-item">{{::datos_per.identificacion_persona}}</li>
+
+                                                                            </ul>
+                                                                          
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                    
+                                            </div>
+                                            <div class="panel-footer text-center">@Html.ActionLink(" Ver mi Curriculum", "vista_curriculum", "Curriculum_mant")</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <h3 class="text-muted">Estado postulaciones</h3>
+                                            </div>
+                                            <div ng-if="ver_p_i">
+                                                <div layout="row" layout-sm="column" layout-align="space-around">
+                                                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                                </div>
+                                            </div>
+                                            <div ng-if="!ver_p_i &&ver_error_p_i && postulaciones_inicio === undefined">
+                                                No se Encontraron resultados ...
+
+                                            </div>
+                                            <div ng-if="!ver_error_p_i">
+                                                error viejo no cargo ...
+
+                                            </div>
+
+                                            <div ng-if="postulaciones_inicio">
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item">Te has postulado en:<span class="label label-info"> {{::postulaciones_inicio.cantidad_postulaciones}} Ofertas </span> </li>
+                                                                <li class="list-group-item">Veces que se ha visto tu curriculum: <span class="label label-info"> {{::postulaciones_inicio.evaluacion_postulaciones}} Ofertas </span></li>
+                                                                <li class="list-group-item">Ofertas en que te estan evaluando:<span class="label label-info"> {{::postulaciones_inicio.finalista_postulaciones}} Ofertas </span></li>
+                                                              
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                <div class="panel-footer text-center">@Html.ActionLink("Ver Todas mis Postulaciones", "vista_postulaciones", "Curriculum_mant")</div>
+                                            </div>
+                                    </div>
+                                </div>
+                          
+                        </div>
+                        <div class="col-md-7">
+
+
+                         
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <h3 class="text-muted">Busqueda rapida</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                @using (Html.BeginForm("filtrar_basico", "Ofertas_Control", FormMethod.Get))
+            {
+
+                                                    <div class="input-group">
+                                                        <input type="text" id="palabra_clave" name="palabra_clave" class="form-control" placeholder="Palabra clave, Puesto o Estudio" value="@ViewBag.palabra_clave">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-info" type="submit"> Realizar Busqueda <i class="fa fa-fw fa-search"></i></button>
+                                                        </span>
+
+                                                    </div>
+
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" ng-init="p_o()">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-info" >
+                                            <div class="panel-heading">
+                                                <h3 class="text-muted">Ofertas que Podrian Interesarte:</h3>
+                                            </div>
+                                            <div class="panel-body" >
+                                                
+                                                        <div ng-if="ver_p_o">
+                                                            <div layout="row" layout-sm="column" layout-align="space-around">
+                                                                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-if="!ver_p_o  && ver_error_p_o && postulaciones_inicio_ofertas === undefined">
+                                                            No se Encontraron resultados ...
+
+                                                        </div>
+                                                        <div ng-if="!ver_error_p_o ">
+                                                            error viejo no cargo ...
+
+                                                        </div>
+
+                                                <div ng-if="postulaciones_inicio_ofertas">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item" ng-repeat="p_o in postulaciones_inicio_ofertas track by $index">
+                                                        
+                                                            <h3>   <a href="~/Ofertas_Control/vista_detalle_oferta/{{::p_o.id_oferta}}">{{::p_o.nombre_oferta}}</a></h3>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+
+
+                                                 
+                                            </div>
+                                            <div class="panel-footer text-center">@Html.ActionLink(" Ver Todas las ofertas", "index", "Ofertas_Control")</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+

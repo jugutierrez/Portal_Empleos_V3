@@ -1,0 +1,140 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading clearfix">
+
+    <div class="pull-right">
+        <div ng-controller="data1">
+
+            <a href="" ng-click="abremodal('../Curriculum_mant/agregar_vista_experiencias_laborales_curriculum' ,'')" class="btn btn-default "><i class="fa fa-fw fa-lg fa-plus-circle text-warning"></i>Agregar</a>
+        </div>
+    </div>
+        <div class="pull-left">
+            <h3> Mis Experiencias Laborales</h3>
+        </div>
+    </div>
+    <div class="panel-body" style="word-break: break-word">
+        <div class="col-md-12">
+         
+            <div ng-show="ver_exp">
+                <div layout="row" layout-sm="column" layout-align="space-around">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </div>
+            <div ng-show="!ver_exp && exp_curriculum.length <= 0">
+                No se Encontraron resultados ...
+
+            </div>
+            <div ng-show="!ver_exp && error_exp ">
+                error viejo no cargo ...
+
+            </div>
+            <div ng-show="exp_curriculum.length > 0">
+                <div ng-repeat="exp_c in exp_curriculum track by $index">
+                 
+                    <div class="well">
+                        <div class="row" style="border:dashed;margin-bottom:5px;">
+                            <div class="col-xs-3">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4 class="text-center">Año duracion</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4 class="text-center">Desde:</h4>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <h4 class="text-info text-center">{{exp_c.ano_inicio_experiencia_laboral.replace('/Date(','').replace(')/','') | date:'dd-MM-yyyy'}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                  
+                                    <div class="col-xs-12">
+                                        <h4 class="text-center">Hasta:</h4>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <h4 class="text-info text-center"> {{exp_c.ano_termino_experiencia_laboral.replace('/Date(','').replace(')/','') | date:'dd-MM-yyyy'}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="row" >
+                                    <div class="col-xs-8">
+                                       
+                                            <h4>Cargo Ejercido:</h4> <h4 class="text-info">{{exp_c.nombre_experiencia_laboral}}</h4>
+                                        
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="well-sm" ng-controller="data1">
+                                            <a href="" ng-click="abremodal('../Curriculum_mant/editar_vista_experiencias_laborales_curriculum/' , exp_c.id_experiencia_laboral_curriculum)" class="btn btn-block btn-info btn-sm "><i class="fa fa-star fa-fw"></i>Editar</a>
+                                            <a href="" ng-click="abremodal('../Curriculum_mant/eliminar_vista_experiencias_laborales_curriculum/' , exp_c.id_experiencia_laboral_curriculum)" class="btn btn-block btn-info btn-sm"><i class="fa fa-star fa-fw"></i>Eliminar</a>
+                                        </div>
+                                        </div>
+                                   
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        Responsabilidad Cargo: <h4 class="text-info">{{exp_c.nombre_cargo_experiencia_laboral}}</h4>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        Empresa: <h4 class="text-info">{{exp_c.empresa_experiencia_laboral}}</h4>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        Area: <h4 class="text-info">{{exp_c.nombre_area_experiencia_laboral}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        Descripcion de tareas realizadas:<h4 class="text-info">{{exp_c.detalle_experiencia_laboral}}</h4>
+                                    </div>
+                                </div>
+                                
+                         
+                            </div>
+                           <hr>
+                            <div class="col-xs-12">
+                                <div class="well">
+                                    <div class="row" ng-if="exp_c.id_referencia_laboral == 0">
+                                        <div class="col-xs-12 text-center" ng-controller="data1">
+                                            <button type="button" ng-click="abremodal('../Curriculum_mant/agregar_vista_referencias_laborales_curriculum/' , exp_c.id_experiencia_laboral_curriculum)" class="btn  btn-lg btn-info">Agregar Referencia laboral <i class="fa fa-lg fa-plus-circle text-default"></i></button>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row" ng-if="exp_c.id_referencia_laboral != 0">
+                                        <div class="col-xs-12">
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <h4>Referencia Laboral:</h4> 
+                                                   
+                                                </div>
+                                                <div class="col-xs-4" ng-controller="data1">
+                                                    <a href="" ng-click="abremodal('../Curriculum_mant/eliminar_vista_referencias_laborales_curriculum/' , exp_c.id_experiencia_laboral_curriculum)" class="btn btn-block btn-info btn-sm"><i class="fa fa-star fa-fw"></i>Eliminar</a>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <h4> Nombre:</h4><h4 class="text-info">{{::exp_c.referencia_laboral.nombre_referencia_laboral}}</h4>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <h4> Cargo:</h4><h4 class="text-info">{{::exp_c.referencia_laboral.cargo_referencia_laboral}}</h4>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <h4> Telefono:</h4><h4 class="text-info">{{::exp_c.referencia_laboral.contacto_referencia_laboral}}</h4>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <h4> Email:</h4><h4 class="text-info">{{::exp_c.referencia_laboral.correo_referencia_laboral}}</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Recordar credenciales";
+}
+
+
+<div class="container">
+    <div class="well">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">Recupere sus Credenciales</h1>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="well">
+                    <blockquote>
+                        <p>su contraseña sera entregada via correo electronico.</p>
+                        <p>En Caso de algun Inconveniente puede enviar un correo mediante:</p>
+                        <footer>Opcion Soporte</footer>
+                        <footer>ju.gutierreza@hotmail.com</footer>
+                       
+                    </blockquote>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="well">
+                            <form name="mainForm" data-ng-submit="recordar_cuenta_persona()" data-ng-controller="data1" data-ng-model="recordar_cuenta_personas" >
+                                <div class="form-group">
+                                    <label class="control-label" for="exampleInputEmail1">Correo Electronico</label>
+                                    <input class="form-control" id="correo_electronico" name="correo_electronico" placeholder="Ej: Maipu@Maipu.cl" ng-model="recordar_cuenta_personas.correo_electronico_persona"
+                                           type="email" required>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label class="control-label" for="exampleInputPassword1">Rut</label>
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="rut_usuario" name="rut_usuario" placeholder="Ej: 18356397" ng-model="recordar_cuenta_personas.identificacion_persona"
+                                                   type="text" required>
+                                        </div>
+
+                                        <div class="col-sm-2">
+                                            <input class="form-control" id="dig_rut_usuario" name="dig_rut_usuario" placeholder="Ej: k" ng-model="recordar_cuenta_personas.digito_identificacion_persona"
+                                                   type="text" required>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <hr>
+                                <button type="submit" class="btn btn-block btn-lg btn-info">Solicitar Recuperar Contraseña</button>
+                                </form>
+
+</div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $("#my-form").on("submit", function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (response) {
+                if (response != null && response.success) {
+                    alert(response.responseText);
+
+                    $('#modals1').modal('hide')
+
+                } else {
+                    // DoSomethingElse()
+                    alert(response.responseText);
+                }
+            },
+            error: function (response) {
+                alert("error!");  //
+            }
+
+
+
+
+        });
+
+    });
+
+
+</script>
+
+

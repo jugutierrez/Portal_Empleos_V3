@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "Soporte";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="well">
+                <h1>Centro de Soporte</h1>
+            </div>
+        </div>
+    </div>
+
+ 
+        <form name="mainForm" data-ng-submit="soporte_men()" data-ng-controller="soporte" ng-model="soporte_datos" enctype="multipart/form-data">
+
+
+
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="well">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="well">
+                                    <div class="form-group">
+                                      
+                                            <label class="control-label" for="exampleInputEmail1">Nombre Completo</label>
+                                            <input class="form-control" id="nombre_remitente" name="nombre_remitente" ng-model="soporte_datos.nombre_remitente"
+                                                   placeholder="Ej: pedro pica piedra" type="text" required>
+                                      
+                                    </div>
+                                    <div class="form-group">
+                                      
+                                            <label class="control-label" for="exampleInputEmail1">Correo</label>
+                                            <input class="form-control" id="correo_remitente" name="correo_remitente" ng-model="soporte_datos.correo_remitente"
+                                                   placeholder="Ej: maipu@maipu.cl" type="email" required>
+                        
+                                    </div>
+                                    <div class="form-group">
+                                        
+                                            <label class="control-label" for="titulo">rut</label>
+                                            <input class="form-control" id="anexo_remitente" name="anexo_remitente" ng-model="soporte_datos.rut_remitente"
+                                                   placeholder="Ej: 6987" type="text" required>
+                                        <input class="form-control" id="anexo_remitente" name="anexo_remitente" ng-model="soporte_datos.digito_rut_remitente"
+                                               placeholder="Ej: 6987" type="text" required>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="well">
+                                    <h3 class="text-center">Imagen de Prueba</h3>
+                                    @* @Html.TextBox("", new { id = "file", name = "file", type = "File", accept = "image/x-png, image/gif, image/jpeg", onchange = "document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])" })*@
+                                    <input type="file" accept="image/x-png, image/gif, image/jpeg" onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])" value="Seleccione foto..."  file-model ="soporte_datos.fotos"/>
+                                    <img src="http://k15.kn3.net/05DC618D2.jpg" class="center-block img-responsive img-rounded" id="preview" name="preview"  />
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="well">
+                                    <div class="form-group">
+                                        <label class="control-label" for="exampleInputPassword1">Asunto</label>
+                                        <input class="form-control" id="asunto_soporte" name="asunto_soporte"
+                                               placeholder="Ej: mi pagina no carga" type="text" ng-model="soporte_datos.asunto_mensaje" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="exampleInputPassword1">Mensaje</label>
+                                        <textarea class="form-control" id="mensaje_soporte" name="mensaje_soporte" maxlength="500" rows="6"
+                                                  placeholder="Ej: por algun motivo mi pagina no carga , etc." type="text" ng-model="soporte_datos.descripcion_mensaje" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+
+
+
+                                <button type="submit" class="btn btn-lg btn-block btn-info" value="Actualizar" >Enviar Soporte</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+          
+</div>

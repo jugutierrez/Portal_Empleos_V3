@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="~/Images/logo_muni.png" />
+    <!--[if IE]>
+    <link rel="shortcut icon" href="~/Images/logo_muni.png" type="image/vnd.microsoft.icon" />
+    <![endif]-->
+
+    <title>@ViewBag.Title - Portal Empleos Maipu</title>
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/angular1")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+
+
+
+</head>
+<body ng-cloak>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+
+
+    @RenderBody()
+
+
+    <hr />
+    <footer class="section section-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h3>Municipalidad de Maipu</h3>
+                                    <hr>
+                                    <div class="textwidget">
+                                        <img class="alignleft img-responsive" src="http://www.municipalidadmaipu.cl/wp-content/uploads/2014/11/logo-blanco.png"
+                                             alt="logo-blanco2" width="80">
+                                        <p>
+                                            Teléfono
+                                            <br>56-2-2677 6000
+                                        </p>
+                                        <p>
+                                            Dirección
+                                            <br>Av. 5 de Abril 0260
+                                            <br>Maipú. Santiago Chile
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h3>Redes Sociales</h3>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4>Twitter</h4>
+                                            <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/maipu_chile" data-widget-id="718171785565454336">Tweets por el maipu_chile.</a>
+                                            <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <h4>Facebook</h4>
+                                            <div class="fb-page" data-href="https://www.facebook.com/municipalidadmaipuchile/" data-tabs="timeline" data-height="300" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/municipalidadmaipuchile/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/municipalidadmaipuchile/">Municipalidad de Maipú Chile</a></blockquote></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/face")
+    @Scripts.Render("~/bundles/otrojs")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
